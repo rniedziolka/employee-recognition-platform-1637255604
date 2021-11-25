@@ -11,7 +11,7 @@ AllCops:
     - 'spec/rails_helper.rb'
 
 Layout/LineLength:
-  Max: 130
+  Max: 300
   Exclude:
     - config/**/*
 
@@ -25,4 +25,7 @@ Lint/AmbiguousBlockAssociation:
     - spec/**/*
 
 Style/Documentation:
+  Enabled: false
+
+Lint/UselessAssignment:
   Enabled: false
