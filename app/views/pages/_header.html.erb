@@ -3,13 +3,13 @@
   <form class="container-fluid justify-content-start">
    <div class="container">
    
-   <% if user_signed_in?  %>
+   <% if employee_signed_in?  %>
    
     <%= link_to 'Home page', root_path, class:"btn btn-outline-success me-2" %>
     
     <% else %>
      
-     <%= link_to 'Login page', new_user_session_path, class:"btn btn-sm btn-outline-secondary" %>
+     <%= link_to 'Login page', new_employee_session_path, class:"btn btn-sm btn-outline-secondary" %>
      <% end %>
       </div>
   </form>
