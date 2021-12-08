@@ -3,7 +3,7 @@
 
 
 <% if current_employee %>
-<%= link_to 'Sign out', destroy_employee_session_path, method: :delete %>
+<%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:"btn btn-secondary" %>
 <% else %>
 
 <% end %>
