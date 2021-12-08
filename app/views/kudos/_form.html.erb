@@ -1,0 +1,32 @@
+<%= form_with(model: kudo) do |form| %>
+  <% if kudo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(kudo.errors.count, "error") %> prohibited this kudo from being saved:</h2>
+
+      <ul>
+        <% kudo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mb-3">
+    <%= form.label :title %>
+    <%= form.text_field :title, class:"form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :content %>
+    <%= form.text_area :content, class:"form-control" %>
+  </div>
+  
+  <div class="field mb-3">
+    <%= form.label :employee_id %>
+    <%= form.number_field :employee_id, id: :kudo_employee_id, class:"form-control", value:current_employee.id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+<% end %>
