@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h2>Kudos List</h2>
 
 <table class="table">
@@ -19,8 +17,11 @@
         <td><%= kudo.content %></td>
         <td><%= kudo.employee_id %></td>
         <td><%= link_to 'Show', kudo %></td>
+        
+        <% if kudo.employee == current_employee %>
         <td><%= link_to 'Edit', edit_kudo_path(kudo) %></td>
         <td><%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
