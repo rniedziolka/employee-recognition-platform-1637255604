@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "pages/home"
+  get 'pages/home'
   devise_for :employees
   resources :kudos
   root 'pages#home'
