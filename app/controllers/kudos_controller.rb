@@ -34,6 +34,24 @@ class KudosController < ApplicationController
 
   # PATCH/PUT /kudos/1
   
+  def update
+    if @kudo.update(kudo_params)
+      redirect_to @kudo, notice: 'Kudo was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  # DELETE /kudos/1
+  def destroy
+    @kudo.destroy
+    redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+  end
+
+  def correct_employee
+     @kudo = current_employee.kudos.find_by(id: params[:id])
+     redirect_to kudos_path, notice: "Not Authorized To Edit This Kudo" if @kudo.nil?
+  end
     
   private
     # Use callbacks to share common setup or constraints between actions.
