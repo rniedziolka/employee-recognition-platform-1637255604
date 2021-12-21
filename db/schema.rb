@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_12_08_112131) do
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "employee_id", null: false
+    t.integer "employee_id"
     t.index ["employee_id"], name: "index_kudos_on_employee_id"
   end
 
