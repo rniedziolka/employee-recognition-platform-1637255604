@@ -29,3 +29,12 @@ Style/Documentation:
 
 Lint/UselessAssignment:
   Enabled: false
+  
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+  
+RSpec/InstanceVariable:
+  Enabled: false
+  
+RSpec/MultipleExpectations:
+  Enabled: false
