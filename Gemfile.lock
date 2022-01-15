@@ -273,7 +273,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
-  capybara
+  capybara (~> 3.36)
   devise
   factory_bot_rails
   listen (~> 3.3)
