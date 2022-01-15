@@ -27,7 +27,7 @@ class KudosController < ApplicationController
     @kudo = Kudo.new(kudo_params)
     @kudo = current_employee.kudos.build(kudo_params)
     if @kudo.save
-      redirect_to @kudo, notice: 'Kudo was successfully created.'
+      redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
       render :new
     end
@@ -37,7 +37,7 @@ class KudosController < ApplicationController
 
   def update
     if @kudo.update(kudo_params)
-      redirect_to @kudo, notice: 'Kudo was successfully updated.'
+      redirect_to kudos_path, notice: 'Kudo was successfully updated.'
     else
       render :edit
     end
