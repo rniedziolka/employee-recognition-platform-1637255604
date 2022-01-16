@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'Employee account test', type: :system do
   before do
-   driven_by(:rack_test)
+    driven_by(:rack_test)
   end
-  
+
   let!(:employee) { FactoryBot.create(:employee) }
   let(:valid_attributes) { FactoryBot.attributes_for(:employee) }
 
