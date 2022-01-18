@@ -10,12 +10,10 @@ RSpec.describe 'Kudo test', type: :system do
   let!(:employee) { create(:employee) }
 
   it 'crud kudo' do
+    user = FactoryBot.create(:employee)
+    login_as(employee)
+
     visit root_path
-    click_link 'Login page'
-    fill_in 'Email', with: employee.email
-    fill_in 'Password', with: employee.password
-    click_button 'Log in'
-    expect(page).to have_content 'Signed in successfully.'
 
     click_link 'New Kudo'
     fill_in 'Title', with: 'Title test1'
@@ -24,6 +22,8 @@ RSpec.describe 'Kudo test', type: :system do
 
     expect(page).to have_content 'Kudo was successfully created.'
     expect(page).to have_content 'Kudos'
+    expect(page).to have_content 'Title test1'
+    expect(page).to have_content 'Content Test1'
 
     visit root_path
     find(:xpath, "//tr[contains(.,'Title test1')]/td/a", text: 'Edit').click

@@ -7,7 +7,6 @@ RSpec.describe 'Employee account test', type: :system do
     driven_by(:rack_test)
   end
 
-  let!(:employee) { FactoryBot.create(:employee) }
   let(:valid_attributes) { FactoryBot.attributes_for(:employee) }
 
   it 'create user, sign up, sign out, log in' do
