@@ -1,0 +1,27 @@
+<h2>Admin Kudos List</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Employee ID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @kudos.each do |kudo| %>
+      <tr>
+        <td><%= kudo.title %></td>
+        <td><%= kudo.content %></td>
+        <td><%= kudo.employee_id %></td>
+        <td><%= link_to 'Show', admin_kudo_path(kudo) %></td>
+        <td><%= link_to 'Edit', edit_admin_kudo_path(kudo) %></td>
+        <td><%= link_to 'Destroy', admin_kudo_path(kudo), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
