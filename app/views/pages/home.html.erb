@@ -1,9 +1,8 @@
-
 <h1>This is a home page!!!</h1>
 
 
 <% if current_employee %>
-<%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:"btn btn-secondary" %>
+<%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:"btn btn-sm btn-outline-secondary" %>
 <% else %>
 
 <% end %>

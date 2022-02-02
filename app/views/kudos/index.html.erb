@@ -16,11 +16,11 @@
         <td><%= kudo.title %></td>
         <td><%= kudo.content %></td>
         <td><%= kudo.employee_id %></td>
-        <td><%= link_to 'Show', kudo %></td>
+        <td><%= link_to 'Show', kudo, class:"btn btn-sm btn-outline-secondary" %></td>
         
         <% if kudo.employee == current_employee %>
-        <td><%= link_to 'Edit', edit_kudo_path(kudo) %></td>
-        <td><%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_kudo_path(kudo), class:"btn btn-sm btn-outline-secondary" %></td>
+        <td><%= link_to 'Destroy', kudo, class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
