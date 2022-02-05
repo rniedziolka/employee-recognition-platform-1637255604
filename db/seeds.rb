@@ -14,3 +14,6 @@ employee5 = Employee.create(email: "zuza_gala@rv.com", password: "jak1to2jest")
 
 puts "Creating admin account"
 admin = AdminUser.create(email: "admin@example.com", password: 'tojestto123')
+
+company_value1 = CompanyValue.create(title: "Patient")
+company_value2 = CompanyValue.create(title: "Helpful")

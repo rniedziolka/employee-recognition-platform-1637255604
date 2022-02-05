@@ -31,6 +31,7 @@ group :development, :test do
   gem 'nokogiri', '~> 1.12', '>= 1.12.5'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 5.0'
   gem 'webdriver_manager'
   gem 'webdrivers'
 end
