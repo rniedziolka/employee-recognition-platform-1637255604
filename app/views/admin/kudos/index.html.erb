@@ -1,11 +1,12 @@
-<h2>Admin Kudos List</h2>
+<h2>Kudos</h2>
 
 <table class="table">
   <thead>
     <tr>
       <th>Title</th>
       <th>Content</th>
-      <th>Employee ID</th>
+      <th>Giver</th>
+      <th>Receiver</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +16,8 @@
       <tr>
         <td><%= kudo.title %></td>
         <td><%= kudo.content %></td>
-        <td><%= kudo.employee_id %></td>
+        <td><%= kudo.employee.email %></td>
+        <td><%= kudo.receiver.email %></td>
         <td><%= link_to 'Show', admin_kudo_path(kudo), class:"btn btn-sm btn-outline-secondary" %></td>
         <td><%= link_to 'Edit', edit_admin_kudo_path(kudo), class:"btn btn-sm btn-outline-secondary" %></td>
         <td><%= link_to 'Destroy', admin_kudo_path(kudo), class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
