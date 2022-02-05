@@ -1,30 +1,21 @@
-<h2>Kudos List</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Employee ID</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @kudos.each do |kudo| %>
-      <tr>
-        <td><%= kudo.title %></td>
-        <td><%= kudo.content %></td>
-        <td><%= kudo.employee_id %></td>
-        <td><%= link_to 'Show', kudo, class:"btn btn-sm btn-outline-secondary" %></td>
+<h2>Kudos</h2>
+  <br>
+    <div class="row hstack gap-3">
+      <% @kudos.each do |kudo| %>
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title"><%= kudo.title.first(20) %></h5>
+            <p class="card-text"><%= kudo.content.first(80) %></p>
+            <h6 class="card-subtitle mb-2 text-muted">From: <%= kudo.employee.email %></h6>
+            <h6 class="card-subtitle mb-2 text-muted">To: <%= kudo.receiver.email %></h6>
+            <td><%= link_to 'Show', kudo, class:"btn btn-sm btn-outline-secondary" %></td>
         
-        <% if kudo.employee == current_employee %>
-        <td><%= link_to 'Edit', edit_kudo_path(kudo), class:"btn btn-sm btn-outline-secondary" %></td>
-        <td><%= link_to 'Destroy', kudo, class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+            <% if kudo.employee == current_employee %>
+              <td><%= link_to 'Edit', edit_kudo_path(kudo), class:"btn btn-sm btn-outline-secondary" %></td>
+              <td><%= link_to 'Destroy', kudo, class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </div>
+        </div>
+       <br>
+      <% end %>
+    </div>
