@@ -28,7 +28,7 @@ RSpec.describe 'Kudo test', type: :system do
     expect(page).to have_content 'Content Test1'
 
     visit root_path
-    find(:xpath, "//tr[contains(.,'Title test1')]/td/a", text: 'Edit').click
+    click_link 'Edit'
     fill_in 'Content', with: 'Another Content Test1'
     click_button 'Update Kudo'
     expect(page).to have_content 'Another Content Test1'

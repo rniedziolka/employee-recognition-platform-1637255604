@@ -18,17 +18,19 @@ RSpec.describe 'Admin crud', type: :system do
     click_button 'Log in'
     expect(page).to have_content 'Admin dashboard'
 
-    click_link 'New Admin Kudo'
+    click_link 'New Kudo'
     fill_in 'Title', with: 'Title test1'
     fill_in 'Content', with: 'Content Test1'
-    select employee1.id, from: 'kudo[employee_id]'
+    select employee1.email, from: 'kudo[employee_id]'
+    select employee1.email, from: 'kudo[receiver_id]'
     click_button 'Create Kudo'
     expect(page).to have_content 'Kudo was successfully created.'
 
     click_link 'Edit'
     fill_in 'Title', with: 'Title test3'
     fill_in 'Content', with: 'Content Test3'
-    select employee2.id, from: 'kudo[employee_id]'
+    select employee2.email, from: 'kudo[employee_id]'
+    select employee2.email, from: 'kudo[receiver_id]'
     click_button 'Update Kudo'
     expect(page).to have_content 'Kudo was successfully updated.'
 
