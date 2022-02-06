@@ -13,4 +13,4 @@ employee4 = Employee.create(email: "pawel.tkaczyk@wp.pl", password: "hasloHASLO"
 employee5 = Employee.create(email: "zuza_gala@rv.com", password: "jak1to2jest")
 
 puts "Creating admin account"
-AdminUser.where(email: "admin@example.com").first_or_create!(password: 'password')
+admin = AdminUser.create(email: "admin@example.com", password: 'tojestto123')
