@@ -21,13 +21,17 @@ RSpec.describe 'AdminCompanyValue crud', type: :system do
     fill_in 'company_value[title]', with: 'Example'
     click_button 'Create Company value'
     expect(page).to have_content 'Company Value was successfully created.'
+    expect(page).to have_content 'Example'
 
     click_link 'Edit'
     fill_in 'company_value[title]', with: 'Example2'
     click_button 'Update Company value'
     expect(page).to have_content 'Company Value was successfully updated.'
+    expect(page).to have_content 'Example2'
+    expect(page).not_to have_content 'Example'
 
     click_link 'Destroy'
     expect(page).to have_content 'Company Value was successfully destroyed.'
+    expect(page).not_to have_content 'Example2'
   end
 end
