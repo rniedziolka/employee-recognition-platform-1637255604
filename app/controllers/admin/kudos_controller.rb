@@ -2,7 +2,6 @@
 
 module Admin
   class KudosController < AdminController
-  
     def index
       @kudos = Kudo.all
     end
@@ -16,7 +15,7 @@ module Admin
     end
 
     def edit
-        @kudo = Kudo.find(params[:id])
+      @kudo = Kudo.find(params[:id])
     end
 
     def create
@@ -44,7 +43,7 @@ module Admin
     end
 
     private
-    
+
     def kudo_params
       params.require(:kudo).permit(:title, :content, :employee_id, :receiver_id)
     end

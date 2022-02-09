@@ -2,7 +2,6 @@
 
 module Admin
   class CompanyValuesController < AdminController
-    
     def index
       @company_values = CompanyValue.all
     end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class KudosController < ApplicationController
-
   def index
     @kudos = Kudo.all
   end
@@ -30,11 +29,11 @@ class KudosController < ApplicationController
   def update
     @kudo = Kudo.find(params[:id])
     if @kudo.employee == current_employee
-        if @kudo.update(kudo_params)
+      if @kudo.update(kudo_params)
         redirect_to kudos_path, notice: 'Kudo was successfully updated.'
-        else
-         render :edit
-        end
+      else
+        render :edit
+      end
     else
       redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
     end
@@ -43,13 +42,13 @@ class KudosController < ApplicationController
   def destroy
     @kudo = Kudo.find(params[:id])
     if @kudo.employee == current_employee
-       @kudo.destroy
-       redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
+      @kudo.destroy
+      redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
     else
       redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
     end
   end
-    
+
   private
 
   def kudo_params
