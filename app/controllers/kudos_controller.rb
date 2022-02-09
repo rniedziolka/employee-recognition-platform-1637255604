@@ -15,6 +15,11 @@ class KudosController < ApplicationController
 
   def edit
     @kudo = Kudo.find(params[:id])
+    if @kudo.employee == current_employee
+      render :edit
+    else
+      redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
+    end
   end
 
   def create
