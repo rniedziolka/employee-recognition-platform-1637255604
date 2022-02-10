@@ -2,24 +2,24 @@
 
 module Admin
   class KudosController < AdminController
-    before_action :set_kudo, only: %i[show edit update destroy]
-    #  before_action :authenticate_admin_user!
-
     def index
-      @kudos = Kudo.all.includes(:employee, :receiver)
+      @kudos = Kudo.all
     end
 
-    def show; end
+    def show
+      @kudo = Kudo.find(params[:id])
+    end
 
     def new
       @kudo = Kudo.new
     end
 
-    def edit; end
+    def edit
+      @kudo = Kudo.find(params[:id])
+    end
 
     def create
       @kudo = Kudo.new(kudo_params)
-
       if @kudo.save
         redirect_to admin_kudos_path(@kudo), notice: 'Kudo was successfully created.'
       else
@@ -28,6 +28,7 @@ module Admin
     end
 
     def update
+      @kudo = Kudo.find(params[:id])
       if @kudo.update(kudo_params)
         redirect_to admin_kudos_path(@kudo), notice: 'Kudo was successfully updated.'
       else
@@ -36,15 +37,12 @@ module Admin
     end
 
     def destroy
+      @kudo = Kudo.find(params[:id])
       @kudo.destroy
       redirect_to admin_kudos_url, notice: 'Kudo was successfully destroyed.'
     end
 
     private
-
-    def set_kudo
-      @kudo = Kudo.find(params[:id])
-    end
 
     def kudo_params
       params.require(:kudo).permit(:title, :content, :employee_id, :receiver_id)

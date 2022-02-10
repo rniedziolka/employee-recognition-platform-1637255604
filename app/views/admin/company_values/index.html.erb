@@ -1,0 +1,15 @@
+<h2>Company Values</h2>
+  <br>
+    <div class="row hstack gap-3">
+      <% @company_values.each do |company_value| %>
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title"><%= company_value.title.first(20) %></h5>
+            <td><%= link_to 'Show', admin_company_value_path(company_value), class:"btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to 'Edit', edit_admin_company_value_path(company_value), class:"btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to 'Destroy', admin_company_value_path(company_value), class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </div>
+        </div>
+       <br>
+      <% end %>
+    </div>
