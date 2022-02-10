@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_05_183849) do
+ActiveRecord::Schema.define(version: 2022_02_10_093754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_02_05_183849) do
   end
 
   create_table "company_values", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2022_02_05_183849) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "employee_id", null: false
     t.integer "receiver_id", null: false
+    t.bigint "company_value_id", null: false
+    t.index ["company_value_id"], name: "index_kudos_on_company_value_id"
     t.index ["employee_id"], name: "index_kudos_on_employee_id"
     t.index ["receiver_id"], name: "index_kudos_on_receiver_id"
   end
@@ -68,4 +70,5 @@ ActiveRecord::Schema.define(version: 2022_02_05_183849) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "kudos", "company_values"
 end

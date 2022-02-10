@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :company_value do
-    title { 'Patient' }
+    sequence(:title) { |n| "Patient#{n}" }
   end
 end
