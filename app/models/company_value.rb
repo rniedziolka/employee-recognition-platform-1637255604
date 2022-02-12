@@ -2,5 +2,5 @@
 
 class CompanyValue < ApplicationRecord
   validates :title, presence: true
-  has_many :kudos, dependent: :destroy
+  has_many :kudos
 end
