@@ -7,15 +7,11 @@ RSpec.describe 'AdminCompanyValue crud', type: :system do
     driven_by(:rack_test)
   end
 
-  let!(:admin) { create(:admin_user) }
+  let!(:admin_user) { create(:admin_user) }
 
   it 'test admin crud actions' do
+    login_as(admin_user)
     visit admin_root_path
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log in'
-    expect(page).to have_content 'Admin dashboard'
-    click_link 'Company Values'
 
     click_link 'New Company Value'
     fill_in 'Title', with: 'Example123'
