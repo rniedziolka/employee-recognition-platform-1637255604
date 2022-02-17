@@ -41,8 +41,7 @@ module Admin
       if @company_value.destroy
         redirect_to admin_company_values_url, notice: 'Company Value was successfully destroyed.'
       else
-        redirect_to admin_company_values_url
-        flash[:notice] = @company_value.errors.full_messages[0]
+        redirect_to admin_company_values_url, notice: @company_value.errors.full_messages[0]
       end
     end
 
