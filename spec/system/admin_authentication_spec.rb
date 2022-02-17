@@ -7,16 +7,11 @@ RSpec.describe 'Admin authentication' do
     driven_by(:rack_test)
   end
 
-  let(:admin) { create(:admin_user) }
+  let(:admin_user) { build(:admin_user) }
 
   it 'Allows admin to log in' do
+    login_as(admin_user)
     visit admin_root_path
-
-    fill_in 'Email', with: admin.email
-    fill_in 'Password', with: admin.password
-    click_button 'Log in'
-
-    expect(page).to have_content 'Admin dashboard'
     click_on 'Log out'
     expect(page).to have_content 'Signed out successfully.'
   end
