@@ -1,0 +1,14 @@
+<h2>Rewards</h2>
+  <br>
+    <div class="row hstack gap-3">
+      <% @rewards.each do |reward| %>
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title"><%= reward.title.first(20) %></h5>
+            <h5 class="card-title"><%= reward.price %></h5>
+            <td><%= link_to 'Show', reward_path(reward), class:"btn btn-sm btn-outline-secondary" %></td>
+          </div>
+        </div>
+       <br>
+      <% end %>
+    </div>

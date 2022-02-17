@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'kudos#index'
 
   resources :kudos
+  resources :rewards, only: %i[index show]
 
   namespace :admin do
     root to: 'pages#dashboard', as: :root
