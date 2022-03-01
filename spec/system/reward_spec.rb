@@ -9,7 +9,6 @@ RSpec.describe 'Reward', type: :system do
 
   let(:employee) { create(:employee) }
   let!(:reward) { create(:reward, price: 1) }
-  let!(:company_value) { create(:company_value) }
 
   it 'rewards test' do
     sign_in(employee)
@@ -35,7 +34,7 @@ RSpec.describe 'Reward', type: :system do
     click_link 'Buy'
     expect(page).to have_content 'You have insufficient funds in your account.'
 
-    create(:kudo, employee: employee, receiver: employee, company_value: company_value)
+    create(:kudo, receiver: employee)
 
     visit rewards_path
     expect(page).to have_content '1'

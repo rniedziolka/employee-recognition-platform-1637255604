@@ -11,8 +11,7 @@ class Employee < ApplicationRecord
   has_many :orders, dependent: :nullify
   has_many :rewards, through: :orders
 
-  def likes
-    received_kudos.count
+  def kudos_score
     received_kudos.count - rewards.sum(:price).to_i
   end
 end

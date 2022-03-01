@@ -2,7 +2,7 @@
 
 class OrdersController < ApplicationController
   def create
-    if current_employee.likes < reward.price
+    if current_employee.kudos_score < reward.price
       redirect_to rewards_path, notice: 'You have insufficient funds in your account.'
     else
       @order = Order.new(employee: current_employee, reward: reward)
