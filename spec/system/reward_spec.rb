@@ -8,9 +8,9 @@ RSpec.describe 'Reward', type: :system do
   end
 
   let(:employee) { create(:employee) }
-  let!(:reward) { create(:reward) }
+  let!(:reward) { create(:reward, price: 1) }
 
-  it 'employee can see rewards' do
+  it 'rewards test' do
     sign_in(employee)
 
     visit root_path
@@ -19,6 +19,7 @@ RSpec.describe 'Reward', type: :system do
     expect(page).to have_content reward.title
     expect(page).not_to have_content reward.description
     expect(page).to have_content reward.price
+    expect(page).to have_content '0'
 
     click_link 'Show'
     expect(page).to have_content reward.title
@@ -29,5 +30,16 @@ RSpec.describe 'Reward', type: :system do
     expect(page).to have_content reward.title
     expect(page).not_to have_content reward.description
     expect(page).to have_content reward.price
+
+    click_link 'Buy'
+    expect(page).to have_content 'You have insufficient funds in your account.'
+
+    create(:kudo, receiver: employee)
+
+    visit rewards_path
+    expect(page).to have_content '1'
+    click_link 'Buy'
+    expect(page).to have_content 'Reward bought.'
+    expect(page).to have_content '0'
   end
 end

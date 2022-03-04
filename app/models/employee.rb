@@ -8,8 +8,10 @@ class Employee < ApplicationRecord
 
   has_many :given_kudos, class_name: 'Kudo', dependent: :destroy, inverse_of: :employee
   has_many :received_kudos, class_name: 'Kudo', foreign_key: 'receiver_id', dependent: :destroy, inverse_of: :receiver
+  has_many :orders, dependent: :nullify
+  has_many :rewards, through: :orders
 
-  def likes
-    received_kudos.count
+  def kudos_score
+    received_kudos.count - rewards.sum(:price).to_i
   end
 end

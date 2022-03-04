@@ -22,5 +22,5 @@ kudo2 = Kudo.create!(title: Faker::Food.dish, content: Faker::Food.description, 
 kudo3 = Kudo.create!(title: Faker::Food.dish, content: Faker::Food.description, employee_id: employee3.id, receiver_id: employee4.id, company_value: company_value1)
 kudo4 = Kudo.create!(title: Faker::Food.dish, content: Faker::Food.description, employee_id: employee4.id, receiver_id: employee3.id, company_value: company_value2)
 
-reward1 = Reward.create!(title: Faker::Food.dish, description: Faker::Food.description, price: 200)
-reward2 = Reward.create!(title: Faker::Food.dish, description: Faker::Food.description, price: 88)
+reward1 = Reward.create!(title: Faker::Food.dish, description: Faker::Food.description, price: 1)
+reward2 = Reward.create!(title: Faker::Food.dish, description: Faker::Food.description, price: 3)

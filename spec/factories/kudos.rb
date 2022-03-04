@@ -4,6 +4,8 @@ FactoryBot.define do
   factory :kudo do
     title { 'Title' }
     content { 'Content' }
-    employee
+    company_value
+    employee { create(:employee) }
+    receiver { create(:employee) }
   end
 end
