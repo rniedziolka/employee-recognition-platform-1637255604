@@ -23,6 +23,8 @@
         <%= current_employee.kudos_score %>
       </span>
     </form>
+    
+    <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:"btn btn-outline-success me-2" %>
    
     <% else %>
      
