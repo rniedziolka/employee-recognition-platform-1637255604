@@ -19,6 +19,7 @@ gem 'webpacker', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'faker', '~> 1.6', '>= 1.6.3'
+gem 'rails-i18n', '~> 6.0'
 
 group :development, :test do
   # Debugging tool
