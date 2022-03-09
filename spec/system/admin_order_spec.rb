@@ -27,6 +27,13 @@ RSpec.describe 'AdminOrder', type: :system do
     expect(page).to have_content reward.price
 
     login_as(admin_user)
+
+    click_link 'Orders'
+
+    expect(page).to have_content reward.title
+    expect(page).to have_content reward.description
+    expect(page).to have_content reward.price
+
     visit admin_rewards_path
     click_link 'Edit'
     fill_in 'reward[price]', with: reward2.price
