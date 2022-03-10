@@ -3,7 +3,7 @@
 module Admin
   class OrdersController < AdminController
     def index
-      @orders = Order.all
+      @orders = Order.includes(:employee)
     end
   end
 end

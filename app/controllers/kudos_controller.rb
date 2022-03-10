@@ -2,7 +2,7 @@
 
 class KudosController < ApplicationController
   def index
-    @kudos = Kudo.all
+    @kudos = Kudo.includes(:company_value, :employee, :receiver)
   end
 
   def show
