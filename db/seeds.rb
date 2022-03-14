@@ -6,13 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-employee1 = Employee.create!(email: 'user1@example.com', password: 'password')
-employee2 = Employee.create!(email: 'user2@example.com', password: 'password')
-employee3 = Employee.create!(email: 'user3@example.com', password: 'password')
-employee4 = Employee.create!(email: 'user4@example.com', password: 'password')
-employee5 = Employee.create!(email: 'user5@example.com', password: 'password')
+employee1 = Employee.where(email: 'user1@example.com').first_or_create!(password: 'password')
+employee2 = Employee.where(email: 'user2@example.com').first_or_create!(password: 'password')
+employee3 = Employee.where(email: 'user3@example.com').first_or_create!(password: 'password')
+employee4 = Employee.where(email: 'user4@example.com').first_or_create!(password: 'password')
+employee5 = Employee.where(email: 'user5@example.com').first_or_create!(password: 'password')
 
-admin = AdminUser.create!(email: 'admin@example.com', password: 'tojestto123')
+admin = AdminUser.where(email: 'admin@example.com').first_or_create!(password: 'tojestto123')
 
 company_value1 = CompanyValue.create!(title: "Patient")
 company_value2 = CompanyValue.create!(title: "Helpful")
