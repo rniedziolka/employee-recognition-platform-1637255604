@@ -9,6 +9,15 @@
             <h6 class="card-subtitle mb-2 text-muted">Placed by: <%= order.employee.email %></h6>
             <h6 class="card-subtitle mb-2 text-muted">Price: <%= order.reward_snapshot.price %></h6>
             <h6 class="card-subtitle mb-2 text-muted">Purchase time: <%= tag.time l(order.created_at, format: :short), datetime: order.created_at %></h6>
+            <h6 class="card-text">
+             <% if order.delivered %>
+              Status: Delivered
+             <% else %>
+              Status: Not delivered 
+              <br>
+              <%= link_to 'Deliver', admin_delivery_path(order), method: :patch, data: { confirm: 'Are you sure? It cannot be undone.' }, class:"btn btn-sm btn-outline-secondary" %>
+             <% end %>
+            </h6>
           </div>
         </div>
        <br>
