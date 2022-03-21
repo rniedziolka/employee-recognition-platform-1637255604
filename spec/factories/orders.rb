@@ -5,5 +5,6 @@ FactoryBot.define do
     employee
     reward
     reward_snapshot { reward }
+    status { 'not_delivered' }
   end
 end
