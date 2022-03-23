@@ -2,7 +2,7 @@
 
 class OrdersController < ApplicationController
   def index
-    if params[:status].present?
+    if %w[delivered not_delivered].include?(params[:status])
       render :index, locals: { orders: Order.where(employee: current_employee).filter_by_status(params[:status]) }
     else
       render :index, locals: { orders: Order.where(employee: current_employee) }

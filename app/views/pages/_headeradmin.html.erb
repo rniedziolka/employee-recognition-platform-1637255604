@@ -23,7 +23,7 @@
 
     <span type="button">
     <a href="/admin/orders"
-     class="btn btn-outline-success">Orders (<%= Order.where("status = '0'").count %>) </a>
+     class="btn btn-outline-success">Orders (<%= Order.not_delivered.count %>) </a>
     </span>
 
     <%= link_to 'Log out', destroy_admin_user_session_path, method: :delete, class:"btn btn-outline-success me-2" %>
