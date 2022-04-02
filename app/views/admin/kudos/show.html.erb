@@ -1,27 +1,27 @@
 <p>
   <strong>Title:</strong>
-  <%= @kudo.title %>
+  <%= kudo.title %>
 </p>
 
 <p>
   <strong>Content:</strong>
-  <%= @kudo.content %>
+  <%= kudo.content %>
 </p>
 
 <p>
   <strong>Employee:</strong>
-  <%= @kudo.employee.email %>
+  <%= kudo.employee.email %>
 </p>
 
 <p>
   <strong>Receiver:</strong>
-  <%= @kudo.receiver.email %>
+  <%= kudo.receiver.email %>
 </p>
 
 <p>
   <strong>Company Value:</strong>
-  <%= @kudo.company_value.title %>
+  <%= kudo.company_value.title %>
 </p>
 
-<%= link_to 'Edit', edit_admin_kudo_path(@kudo), class:"btn btn-sm btn-outline-secondary" %>
+<%= link_to 'Edit', edit_admin_kudo_path(kudo), class:"btn btn-sm btn-outline-secondary" %>
 <%= link_to 'Back', admin_kudos_path, class:"btn btn-sm btn-outline-secondary" %>

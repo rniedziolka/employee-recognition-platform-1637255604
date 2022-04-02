@@ -2,42 +2,41 @@
 
 class KudosController < ApplicationController
   def index
-    @kudos = Kudo.includes(:company_value, :employee, :receiver)
+    render :index, locals: { kudos: Kudo.includes(:company_value, :employee, :receiver).all }
   end
 
   def show
-    @kudo = Kudo.find(params[:id])
+    render :show, locals: { kudo: kudo }
   end
 
   def new
-    @kudo = current_employee.given_kudos.build
+    render :new, locals: { kudo: Kudo.new }
   end
 
   def edit
-    @kudo = Kudo.find(params[:id])
-    if @kudo.employee == current_employee
-      render :edit
+    if kudo.employee == current_employee
+      render :edit, locals: { kudo: kudo }
     else
       redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
     end
   end
 
   def create
-    @kudo = current_employee.given_kudos.build(kudo_params)
-    if @kudo.save
+    kudo = current_employee.given_kudos.build(kudo_params)
+    if kudo.employee == current_employee
+      kudo.save
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
-      render :new
+      render :new, locals: { kudo: kudo }
     end
   end
 
   def update
-    @kudo = Kudo.find(params[:id])
-    if @kudo.employee == current_employee
-      if @kudo.update(kudo_params)
+    if kudo.employee == current_employee
+      if kudo.update(kudo_params)
         redirect_to kudos_path, notice: 'Kudo was successfully updated.'
       else
-        render :edit
+        render :edit, locals: { kudo: kudo }
       end
     else
       redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
@@ -45,9 +44,8 @@ class KudosController < ApplicationController
   end
 
   def destroy
-    @kudo = Kudo.find(params[:id])
-    if @kudo.employee == current_employee
-      @kudo.destroy
+    if kudo.employee == current_employee
+      kudo.destroy
       redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
     else
       redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
@@ -55,6 +53,10 @@ class KudosController < ApplicationController
   end
 
   private
+
+  def kudo
+    @kudo = Kudo.find(params[:id])
+  end
 
   def kudo_params
     params.require(:kudo).permit(:title, :content, :employee_id, :receiver_id, :company_value_id)
