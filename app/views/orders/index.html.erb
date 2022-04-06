@@ -1,13 +1,26 @@
 <h2>Orders</h2>
   <br>
+    <div class="btn-group btns">
+     <%= link_to "Delivered", orders_path(status: 'delivered'), class: "btn btn-sm btn-outline-secondary" %>
+     <%= link_to "Not delivered", orders_path(status: 'not_delivered'), class: "btn btn-sm btn-outline-secondary" %>  
+     <%= link_to "All orders", orders_path, class: "btn btn-sm btn-outline-secondary" %>
+    </div>
+     <br><br><br>
     <div class="row hstack gap-3">
-      <% @orders.each do |order| %>
+      <% orders.each do |order| %>
         <div class="card" style="width: 18rem">
           <div class="card-body">
             <h5 class="card-title"><%= order.reward_snapshot.title %></h5>
             <p class="card-text"><%= order.reward_snapshot.description %></p>
             <h6 class="card-subtitle mb-2 text-muted">Price: <%= order.reward_snapshot.price %></h6>
             <h6 class="card-subtitle mb-2 text-muted">Purchase time: <%= tag.time l(order.created_at, format: :short), datetime: order.created_at %></h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <%if order.not_delivered?%>
+                Status: Not delivered
+              <% else %>
+                Status: Delivered
+              <%end%>
+              </h6>
           </div>
         </div>
        <br>
