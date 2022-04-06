@@ -43,7 +43,7 @@ module Admin
     private
 
     def kudo
-      @kudo = Kudo.find(params[:id])
+      @kudo ||= Kudo.find(params[:id])
     end
 
     def kudo_params

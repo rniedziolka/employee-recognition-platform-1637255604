@@ -55,7 +55,7 @@ class KudosController < ApplicationController
   private
 
   def kudo
-    @kudo = Kudo.find(params[:id])
+    @kudo ||= Kudo.find(params[:id])
   end
 
   def kudo_params

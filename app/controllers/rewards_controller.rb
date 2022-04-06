@@ -12,6 +12,6 @@ class RewardsController < ApplicationController
   private
 
   def reward
-    @reward = Reward.find(params[:id])
+    @reward ||= Reward.find(params[:id])
   end
 end

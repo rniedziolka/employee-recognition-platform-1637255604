@@ -43,7 +43,7 @@ module Admin
     private
 
     def reward
-      @reward = Reward.find(params[:id])
+      @reward ||= Reward.find(params[:id])
     end
 
     def reward_params
