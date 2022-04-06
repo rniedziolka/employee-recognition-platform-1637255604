@@ -19,7 +19,7 @@ module Admin
     private
 
     def order
-      @order = Order.find(params[:id])
+      @order ||= Order.find(params[:id])
     end
   end
 end
