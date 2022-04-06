@@ -1,7 +1,7 @@
 <h2>Company Values</h2>
   <br>
     <div class="row hstack gap-3">
-      <% @company_values.each do |company_value| %>
+      <% company_values.each do |company_value| %>
         <div class="card" style="width: 18rem">
           <div class="card-body">
             <h5 class="card-title"><%= company_value.title.first(20) %></h5>

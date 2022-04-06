@@ -3,49 +3,51 @@
 module Admin
   class CompanyValuesController < AdminController
     def index
-      @company_values = CompanyValue.all
+      render :index, locals: { company_values: CompanyValue.all }
     end
 
     def show
-      @company_value = CompanyValue.find(params[:id])
+      render :show, locals: { company_value: company_value }
     end
 
     def new
-      @company_value = CompanyValue.new
+      render :new, locals: { company_value: CompanyValue.new }
     end
 
     def edit
-      @company_value = CompanyValue.find(params[:id])
+      render :edit, locals: { company_value: company_value }
     end
 
     def create
-      @company_value = CompanyValue.new(company_value_params)
-      if @company_value.save
-        redirect_to admin_company_values_path(@company_value), notice: 'Company Value was successfully created.'
+      company_value = CompanyValue.new(company_value_params)
+      if company_value.save
+        redirect_to admin_company_values_path(company_value), notice: 'Company Value was successfully created.'
       else
-        render :new
+        render :new, locals: { company_value: company_value }
       end
     end
 
     def update
-      @company_value = CompanyValue.find(params[:id])
-      if @company_value.update(company_value_params)
-        redirect_to admin_company_values_path(@company_value), notice: 'Company Value was successfully updated.'
+      if company_value.update(company_value_params)
+        redirect_to admin_company_values_path(company_value), notice: 'Company Value was successfully updated.'
       else
-        render :edit
+        render :edit, locals: { company_value: company_value }
       end
     end
 
     def destroy
-      @company_value = CompanyValue.find(params[:id])
-      if @company_value.destroy
+      if company_value.destroy
         redirect_to admin_company_values_url, notice: 'Company Value was successfully destroyed.'
       else
-        redirect_to admin_company_values_url, notice: @company_value.errors.full_messages[0]
+        redirect_to admin_company_values_url, notice: company_value.errors.full_messages[0]
       end
     end
 
     private
+
+    def company_value
+      @company_value ||= CompanyValue.find(params[:id])
+    end
 
     def company_value_params
       params.require(:company_value).permit(:title)
