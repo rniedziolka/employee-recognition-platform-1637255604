@@ -1,0 +1,28 @@
+<%= form_with(model: [:admin, employee]) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+        <% employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mb-3">
+    <%= form.label :email %>
+    <%= form.text_field :email, class:"form-control" %>
+  </div>
+  
+  <div class="field mb-3">
+    <%= form.label :number_of_available_kudos %>
+    <%= form.number_field :number_of_available_kudos, class:"form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:"btn btn-sm btn-outline-secondary" %>
+    <%= link_to 'Back', admin_employees_path, class:"btn btn-sm btn-outline-secondary" %>
+  </div>
+<% end %>
