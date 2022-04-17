@@ -2,65 +2,30 @@
 
 class KudosController < ApplicationController
   def index
-    @kudos = Kudo.includes(:company_value, :employee, :receiver)
+    render :index, locals: { kudos: Kudo.includes(:company_value, :employee, :receiver).all }
   end
 
   def show
-    @kudo = Kudo.find(params[:id])
+    render :show, locals: { kudo: kudo }
   end
 
   def new
-<<<<<<< Updated upstream
-    @kudo = current_employee.given_kudos.build
-=======
-<<<<<<< Updated upstream
-    render :new, locals: { kudo: Kudo.new }
-=======
-<<<<<<< Updated upstream
-    @kudo = current_employee.given_kudos.build
-=======
     if current_employee.number_of_available_kudos < 1
       redirect_to kudos_path, notice: 'You do not have enough kudos to give away.'
     else
       render :new, locals: { kudo: Kudo.new }
     end
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   end
 
   def edit
-    @kudo = Kudo.find(params[:id])
-    if @kudo.employee == current_employee
-      render :edit
+    if kudo.employee == current_employee
+      render :edit, locals: { kudo: kudo }
     else
       redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
     end
   end
 
   def create
-<<<<<<< Updated upstream
-    @kudo = current_employee.given_kudos.build(kudo_params)
-    if @kudo.save
-      redirect_to kudos_path, notice: 'Kudo was successfully created.'
-    else
-      render :new
-=======
-<<<<<<< Updated upstream
-    kudo = current_employee.given_kudos.build(kudo_params)
-    if kudo.employee == current_employee
-      kudo.save
-      redirect_to kudos_path, notice: 'Kudo was successfully created.'
-    else
-      render :new, locals: { kudo: kudo }
-=======
-<<<<<<< Updated upstream
-    @kudo = current_employee.given_kudos.build(kudo_params)
-    if @kudo.save
-      redirect_to kudos_path, notice: 'Kudo was successfully created.'
-    else
-      render :new
-=======
     if current_employee.number_of_available_kudos >= 1
       kudo = current_employee.given_kudos.build(kudo_params)
       if kudo.employee == current_employee
@@ -73,19 +38,15 @@ class KudosController < ApplicationController
       end
     else
       redirect_to kudos_path, notice: 'You do not have enough kudos to give away.'
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     end
   end
 
   def update
-    @kudo = Kudo.find(params[:id])
-    if @kudo.employee == current_employee
-      if @kudo.update(kudo_params)
+    if kudo.employee == current_employee
+      if kudo.update(kudo_params)
         redirect_to kudos_path, notice: 'Kudo was successfully updated.'
       else
-        render :edit
+        render :edit, locals: { kudo: kudo }
       end
     else
       redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
@@ -93,9 +54,8 @@ class KudosController < ApplicationController
   end
 
   def destroy
-    @kudo = Kudo.find(params[:id])
-    if @kudo.employee == current_employee
-      @kudo.destroy
+    if kudo.employee == current_employee
+      kudo.destroy
       redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
     else
       redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
@@ -103,6 +63,10 @@ class KudosController < ApplicationController
   end
 
   private
+
+  def kudo
+    @kudo ||= Kudo.find(params[:id])
+  end
 
   def kudo_params
     params.require(:kudo).permit(:title, :content, :employee_id, :receiver_id, :company_value_id)

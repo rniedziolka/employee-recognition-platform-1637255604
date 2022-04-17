@@ -13,6 +13,7 @@ bin/setup
 ```
 
 ### How to start the app
+
 ```
 rails server
 ```

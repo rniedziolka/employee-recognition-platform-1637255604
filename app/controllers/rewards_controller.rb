@@ -2,10 +2,16 @@
 
 class RewardsController < ApplicationController
   def index
-    @rewards = Reward.all
+    render :index, locals: { rewards: Reward.all }
   end
 
   def show
-    @reward = Reward.find(params[:id])
+    render :show, locals: { reward: reward }
+  end
+
+  private
+
+  def reward
+    @reward ||= Reward.find(params[:id])
   end
 end
