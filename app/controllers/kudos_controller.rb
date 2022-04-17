@@ -10,7 +10,23 @@ class KudosController < ApplicationController
   end
 
   def new
+<<<<<<< Updated upstream
     @kudo = current_employee.given_kudos.build
+=======
+<<<<<<< Updated upstream
+    render :new, locals: { kudo: Kudo.new }
+=======
+<<<<<<< Updated upstream
+    @kudo = current_employee.given_kudos.build
+=======
+    if current_employee.number_of_available_kudos < 1
+      redirect_to kudos_path, notice: 'You do not have enough kudos to give away.'
+    else
+      render :new, locals: { kudo: Kudo.new }
+    end
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   end
 
   def edit
@@ -23,11 +39,43 @@ class KudosController < ApplicationController
   end
 
   def create
+<<<<<<< Updated upstream
     @kudo = current_employee.given_kudos.build(kudo_params)
     if @kudo.save
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
       render :new
+=======
+<<<<<<< Updated upstream
+    kudo = current_employee.given_kudos.build(kudo_params)
+    if kudo.employee == current_employee
+      kudo.save
+      redirect_to kudos_path, notice: 'Kudo was successfully created.'
+    else
+      render :new, locals: { kudo: kudo }
+=======
+<<<<<<< Updated upstream
+    @kudo = current_employee.given_kudos.build(kudo_params)
+    if @kudo.save
+      redirect_to kudos_path, notice: 'Kudo was successfully created.'
+    else
+      render :new
+=======
+    if current_employee.number_of_available_kudos >= 1
+      kudo = current_employee.given_kudos.build(kudo_params)
+      if kudo.employee == current_employee
+        kudo.save
+        current_employee.number_of_available_kudos -= 1
+        current_employee.save
+        redirect_to kudos_path, notice: 'Kudo was successfully  created.'
+      else
+        render :new, locals: { kudo: kudo }
+      end
+    else
+      redirect_to kudos_path, notice: 'You do not have enough kudos to give away.'
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     end
   end
 

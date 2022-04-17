@@ -7,7 +7,7 @@ RSpec.describe 'Kudo test', type: :system do
     driven_by(:rack_test)
   end
 
-  let(:employee) { create(:employee) }
+  let(:employee) { create(:employee, number_of_available_kudos: 1) }
   let!(:company_value1) { create(:company_value) }
   let!(:company_value2) { create(:company_value) }
 
@@ -15,6 +15,7 @@ RSpec.describe 'Kudo test', type: :system do
     sign_in(employee)
 
     visit root_path
+    expect(page).to have_content 'Available kudos: 1'
 
     click_link 'New Kudo'
     fill_in 'Title', with: 'Title test1'
@@ -28,7 +29,11 @@ RSpec.describe 'Kudo test', type: :system do
     expect(page).to have_content 'Title test1'
     expect(page).to have_content 'Content Test1'
     expect(page).to have_content company_value1.title
+    expect(page).to have_content 'Available kudos: 0'
     expect(page).to have_content '1'
+
+    click_link 'New Kudo'
+    expect(page).to have_content 'You do not have enough kudos to give away.'
 
     visit root_path
     click_link 'Edit'

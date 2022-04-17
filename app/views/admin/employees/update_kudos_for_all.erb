@@ -1,0 +1,11 @@
+<div class="row hstack gap-3">
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <%= form_with url: update_kudos_for_all_admin_employees_path, method: :patch do |form| %>
+        <h5><%= form.label :add_kudos, "Add number of available Kudos to Employees:", class:"card-subtitle mb-2" %></h5> 
+        <td><%= form.number_field :add_kudos, in: 1..20, value: 10, class:"btn btn-sm btn-outline-secondary" %></td>
+        <td><%= form.submit "Add", class:"btn btn-sm btn-outline-secondary" %></td>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -5,28 +5,32 @@
     
     <% if admin_user_signed_in?  %>
    
-    <%= link_to 'Home page', pages_home_path, class:"btn btn-outline-success me-2" %>
+    <%= link_to 'Home page', pages_home_path, class:"btn btn-sm btn-outline-success" %>
     
-    <%= link_to 'Admin Panel', admin_root_path, class:"btn btn-outline-success me-2"%>
+    <%= link_to 'Admin Panel', admin_root_path, class:"btn btn-sm btn-outline-success"%>
     
-    <%= link_to 'Kudos', admin_kudos_path, class:"btn btn-outline-success me-2" %>
+    <%= link_to 'Employees', admin_employees_path, class:"btn btn-sm btn-outline-success" %>
     
-    <%= link_to 'New Kudo', new_admin_kudo_path, class:"btn btn-outline-success me-2" %>
+    <%= link_to 'Add Kudos', edit_kudos_for_all_admin_employees_path, class:"btn btn-sm btn-outline-success" %>
     
-    <%= link_to 'Company Values', admin_company_values_path, class:"btn btn-outline-success me-2" %>
+    <%= link_to 'Kudos', admin_kudos_path, class:"btn btn-sm btn-outline-success" %>
     
-    <%= link_to 'New Company Value', new_admin_company_value_path, class:"btn btn-outline-success me-2" %>
+    <%= link_to 'New Kudo', new_admin_kudo_path, class:"btn btn-sm btn-outline-success" %>
     
-    <%= link_to 'Rewards', admin_rewards_path, class:"btn btn-outline-success me-2" %>
+    <%= link_to 'Company Values', admin_company_values_path, class:"btn btn-sm btn-outline-success" %>
     
-    <%= link_to 'New Reward', new_admin_reward_path, class:"btn btn-outline-success me-2" %>
+    <%= link_to 'New Company Value', new_admin_company_value_path, class:"btn btn-sm btn-outline-success" %>
+    
+    <%= link_to 'Rewards', admin_rewards_path, class:"btn btn-sm btn-outline-success" %>
+    
+    <%= link_to 'New Reward', new_admin_reward_path, class:"btn btn-sm btn-outline-success" %>
 
     <span type="button">
     <a href="/admin/orders"
-     class="btn btn-outline-success">Orders (<%= Order.not_delivered.count %>) </a>
+     class="btn btn-sm btn-outline-success">Orders (<%= Order.not_delivered.count %>) </a>
     </span>
 
-    <%= link_to 'Log out', destroy_admin_user_session_path, method: :delete, class:"btn btn-outline-success me-2" %>
+    <%= link_to 'Log out', destroy_admin_user_session_path, method: :delete, class:"btn btn-sm btn-outline-success" %>
 
     <% else %>
 
