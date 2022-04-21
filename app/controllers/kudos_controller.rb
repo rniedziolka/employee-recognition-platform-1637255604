@@ -28,7 +28,7 @@ class KudosController < ApplicationController
   def create
     if current_employee.number_of_available_kudos >= 1
       kudo = current_employee.given_kudos.build(kudo_params)
-      if kudo.employee == current_employee
+      if kudo.employee == current_employee && kudo.update(kudo_params)
         kudo.save
         current_employee.number_of_available_kudos -= 1
         current_employee.save
