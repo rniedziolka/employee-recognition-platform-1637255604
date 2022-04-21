@@ -7,12 +7,13 @@ RSpec.describe 'Kudo test', type: :system do
     driven_by(:rack_test)
   end
 
-  let(:employee) { create(:employee, number_of_available_kudos: 1) }
+  let!(:employee1) { create(:employee, number_of_available_kudos: 1) }
+  let!(:employee2) { create(:employee, number_of_available_kudos: 2) }
   let!(:company_value1) { create(:company_value) }
   let!(:company_value2) { create(:company_value) }
 
   it 'crud kudo' do
-    sign_in(employee)
+    sign_in(employee1)
 
     visit root_path
     expect(page).to have_content 'Available kudos: 1'
@@ -20,8 +21,8 @@ RSpec.describe 'Kudo test', type: :system do
     click_link 'New Kudo'
     fill_in 'Title', with: 'Title test1'
     fill_in 'Content', with: 'Content Test1'
-    select employee.email, from: 'kudo[receiver_id]'
-    select company_value1.title, from: 'kudo[company_value_id]'
+    select employee2.email
+    select company_value1.title
     click_button 'Create Kudo'
 
     expect(page).to have_content 'Kudo was successfully created.'

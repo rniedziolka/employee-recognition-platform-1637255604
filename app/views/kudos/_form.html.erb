@@ -23,7 +23,7 @@
   
   <div class="field mb-3">
     <%= form.label :receiver_id %>
-    <%= collection_select(:kudo, :receiver_id, Employee.all, :id, :email, {}, { :class => 'form-select' }) %>
+    <%= collection_select(:kudo, :receiver_id, Employee.where.not(id: current_employee.id), :id, :email, {}, { :class => 'form-select' }) %>
   </div>
   
   <div class="field mb-3">
