@@ -1,0 +1,17 @@
+<h4>All Employees</h4>
+  <br>
+    <div class="row hstack gap-3">
+      <% employees.each do |employee| %>
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Email: <%= employee.email %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Available kudos: <%= employee.number_of_available_kudos %></h6>
+            <h6 class="card-subtitle mb-2 text-muted">Kudo point: <%= employee.kudos_score %></h6>
+            <td><%= link_to 'Show', admin_employee_path(employee), class:"btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to 'Edit', edit_admin_employee_path(employee), class:"btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to 'Destroy', admin_employee_path(employee), class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </div>
+        </div>
+       <br>
+      <% end %>
+    </div>

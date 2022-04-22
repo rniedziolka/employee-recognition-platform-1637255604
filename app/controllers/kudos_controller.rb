@@ -10,7 +10,11 @@ class KudosController < ApplicationController
   end
 
   def new
-    render :new, locals: { kudo: Kudo.new }
+    if current_employee.number_of_available_kudos < 1
+      redirect_to kudos_path, notice: 'You do not have enough kudos to give away.'
+    else
+      render :new, locals: { kudo: Kudo.new }
+    end
   end
 
   def edit
@@ -22,12 +26,18 @@ class KudosController < ApplicationController
   end
 
   def create
-    kudo = current_employee.given_kudos.build(kudo_params)
-    if kudo.employee == current_employee
-      kudo.save
-      redirect_to kudos_path, notice: 'Kudo was successfully created.'
+    if current_employee.number_of_available_kudos >= 1
+      kudo = current_employee.given_kudos.build(kudo_params)
+      if kudo.employee == current_employee && kudo.update(kudo_params)
+        kudo.save
+        current_employee.number_of_available_kudos -= 1
+        current_employee.save
+        redirect_to kudos_path, notice: 'Kudo was successfully  created.'
+      else
+        render :new, locals: { kudo: kudo }
+      end
     else
-      render :new, locals: { kudo: kudo }
+      redirect_to kudos_path, notice: 'You do not have enough kudos to give away.'
     end
   end
 
