@@ -45,6 +45,13 @@ RSpec.describe 'Kudo test', type: :system do
     expect(page).not_to have_content company_value1.title
     expect(page).to have_content company_value2.title
 
+    travel 6.minutes do
+      visit current_path
+      expect(page).not_to have_link 'Edit'
+      expect(page).not_to have_link 'Delete'
+    end
+
+    visit current_path
     click_link 'Destroy'
     expect(page).to have_content 'Kudo was successfully destroyed'
     expect(page).not_to have_content 'Another Content Test1'
