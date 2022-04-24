@@ -46,8 +46,17 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
 
+  ActionMailer::Base.smtp_settings = {
+    user_name: 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
+    password: Rails.application.credentials.dig(:sendgrid, :api_key), #   This is the secret sendgrid API key which was issued during API key creation
+    domain: 'employee-platfrom.herokuapp.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
