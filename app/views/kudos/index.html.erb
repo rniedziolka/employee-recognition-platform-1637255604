@@ -11,7 +11,7 @@
             <h6 class="card-subtitle mb-2 text-muted">Value: <%= kudo.company_value.title %></h6>
             <td><%= link_to 'Show', kudo, class:"btn btn-sm btn-outline-secondary" %></td>
         
-            <% if policy(kudo).update? %>
+            <% if policy(kudo).update? && kudo.employee == current_employee %>
               <td><%= link_to 'Edit', edit_kudo_path(kudo), class:"btn btn-sm btn-outline-secondary" %></td>
               <td><%= link_to 'Destroy', kudo, class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
