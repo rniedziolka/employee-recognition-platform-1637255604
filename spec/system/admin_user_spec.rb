@@ -18,7 +18,8 @@ RSpec.describe 'Admin crud', type: :system do
     visit admin_root_path
     expect(page).to have_content 'Admin dashboard'
 
-    click_link 'New Kudo'
+    click_link 'Kudos'
+    click_link 'Create New Kudo'
     fill_in 'Title', with: 'Title test1'
     fill_in 'Content', with: 'Content Test1'
     select employee1.email, from: 'kudo[employee_id]'

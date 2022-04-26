@@ -1,4 +1,4 @@
-<h4>Kudos</h4>
+<h4>Kudos <%= link_to 'Create New Kudo', new_admin_kudo_path, class:"btn btn-sm btn-outline-secondary" %></h4>
   <br>
     <div class="row hstack gap-3">
       <% kudos.each do |kudo| %>
