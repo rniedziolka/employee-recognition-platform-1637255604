@@ -13,6 +13,7 @@ RSpec.describe 'AdminCompanyValue crud', type: :system do
     login_as(admin_user)
     visit admin_root_path
 
+    click_link 'Company Values'
     click_link 'New Company Value'
     fill_in 'Title', with: 'Example123'
     click_button 'Create Company value'

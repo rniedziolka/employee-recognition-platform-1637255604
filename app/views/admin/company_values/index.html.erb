@@ -1,4 +1,4 @@
-<h4>Company Values</h4>
+<h4>Company Values <%= link_to 'New Company Value', new_admin_company_value_path, class:"btn btn-sm btn-outline-secondary" %></h4>
   <br>
     <div class="row hstack gap-3">
       <% company_values.each do |company_value| %>

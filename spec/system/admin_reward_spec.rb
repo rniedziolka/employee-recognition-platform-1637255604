@@ -12,6 +12,7 @@ RSpec.describe 'AdminReward crud', type: :system do
   it 'test admin crud actions' do
     login_as(admin_user)
     visit admin_root_path
+    click_link 'Rewards'
     click_link 'New Reward'
     fill_in 'Title', with: 'Example123'
     fill_in 'Description', with: 'Desc123'

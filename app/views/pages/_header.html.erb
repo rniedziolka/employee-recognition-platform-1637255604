@@ -7,9 +7,15 @@
    
     <%= link_to 'Home page', pages_home_path, class:"btn btn-sm btn-outline-success" %>
 
-    <%= link_to 'Kudos', kudos_path, class:"btn btn-sm btn-outline-success" %>
-
-    <%= link_to 'New Kudo', new_kudo_path, class:"btn btn-sm btn-outline-success" %>
+    <span class="nav-item dropdown">
+          <a class="btn btn-sm btn-outline-success dropdown-toggle" href="/kudos" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Kudos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="btn btn-sm btn-outline-success dropdown-item" href="/kudos">Kudos List</a></li>
+            <li><a class="btn btn-sm btn-outline-success dropdown-item" href="/kudos/new">Create New Kudo</a></li>
+          </ul>
+    </span>
 
     <%= link_to 'Rewards', rewards_path, class:"btn btn-sm btn-outline-success" %>
     
@@ -41,4 +47,3 @@
    </div>
   </form>
 </nav>
- 
