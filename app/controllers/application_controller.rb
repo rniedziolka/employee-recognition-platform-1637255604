@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    redirect_to kudos_path, notice: 'You can no longer edit or delete this kudo.'
+    redirect_to kudos_path, notice: 'You are not authorized to perform this action.'
   end
 end

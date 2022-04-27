@@ -24,6 +24,10 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - spec/**/*
 
+Lint/MissingSuper:
+  Exclude:
+    - 'app/policies/*'
+
 Style/Documentation:
   Enabled: false
 

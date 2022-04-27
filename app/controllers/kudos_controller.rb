@@ -19,11 +19,7 @@ class KudosController < ApplicationController
 
   def edit
     authorize kudo
-    if kudo.employee == current_employee
-      render :edit, locals: { kudo: kudo }
-    else
-      redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
-    end
+    render :edit, locals: { kudo: kudo }
   end
 
   def create
@@ -44,25 +40,17 @@ class KudosController < ApplicationController
 
   def update
     authorize kudo
-    if kudo.employee == current_employee
-      if kudo.update(kudo_params)
-        redirect_to kudos_path, notice: 'Kudo was successfully updated.'
-      else
-        render :edit, locals: { kudo: kudo }
-      end
+    if kudo.update(kudo_params)
+      redirect_to kudos_path, notice: 'Kudo was successfully updated.'
     else
-      redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
+      render :edit, locals: { kudo: kudo }
     end
   end
 
   def destroy
     authorize kudo
-    if kudo.employee == current_employee
-      kudo.destroy
-      redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
-    else
-      redirect_to kudos_path, notice: 'You are not authorized to edit this kudo.'
-    end
+    kudo.destroy
+    redirect_to kudos_url, notice: 'Kudo was successfully destroyed.'
   end
 
   private
