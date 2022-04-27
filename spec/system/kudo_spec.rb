@@ -15,11 +15,9 @@ RSpec.describe 'Kudo test', type: :system do
   it 'crud kudo' do
     sign_in(employee1)
 
-    visit root_path
+    visit new_kudo_path
     expect(page).to have_content 'Available kudos: 1'
 
-    click_link 'Kudos'
-    click_link 'Create New Kudo'
     fill_in 'Title', with: 'Title test1'
     fill_in 'Content', with: 'Content Test1'
     select employee2.email
