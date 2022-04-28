@@ -42,4 +42,15 @@ RSpec.describe 'Reward', type: :system do
     expect(page).to have_content 'Reward bought.'
     expect(page).to have_content '0'
   end
+
+  it 'pagination check' do
+    create_list(:reward, 18)
+    visit rewards_path
+
+    expect(page).not_to have_content Reward.last.title
+    expect(page).not_to have_content Reward.last.price
+    click_link '2'
+    expect(page).to have_content Reward.last.title
+    expect(page).to have_content Reward.last.price
+  end
 end
