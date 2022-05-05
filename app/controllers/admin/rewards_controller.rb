@@ -36,8 +36,11 @@ module Admin
     end
 
     def destroy
-      reward.destroy
-      redirect_to admin_rewards_url, notice: 'Reward was successfully destroyed.'
+      if reward.destroy
+        redirect_to admin_rewards_url, notice: 'Reward was successfully destroyed.'
+      else
+        redirect_to admin_rewards_url, notice: reward.errors.full_messages[0]
+      end
     end
 
     private
@@ -47,7 +50,7 @@ module Admin
     end
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price)
+      params.require(:reward).permit(:title, :description, :price, category_ids: [])
     end
   end
 end

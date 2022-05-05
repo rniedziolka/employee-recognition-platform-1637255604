@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'pages#dashboard', as: :root
     resources :kudos
+    resources :categories
+    resources :category_rewards
     resources :company_values
     resources :rewards
     resources :orders, only: %i[index update]
