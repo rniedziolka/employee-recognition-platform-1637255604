@@ -37,10 +37,11 @@ module Admin
 
     def destroy
       if category.destroy
-        redirect_to admin_categories_url, notice: 'Category was successfully destroyed.'
+        notice = 'Category was successfully destroyed.'
       else
-        redirect_to admin_categories_url, notice: category.errors.full_messages[0]
+        notice = category.errors.full_messages[0]
       end
+      redirect_to admin_categories_url, notice: notice
     end
 
     private

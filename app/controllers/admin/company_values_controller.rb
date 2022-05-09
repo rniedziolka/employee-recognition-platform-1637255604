@@ -37,10 +37,11 @@ module Admin
 
     def destroy
       if company_value.destroy
-        redirect_to admin_company_values_url, notice: 'Company Value was successfully destroyed.'
+        notice = 'Company Value was successfully destroyed.'
       else
-        redirect_to admin_company_values_url, notice: company_value.errors.full_messages[0]
+        notice = company_value.errors.full_messages[0]
       end
+      redirect_to admin_company_values_url, notice: notice
     end
 
     private

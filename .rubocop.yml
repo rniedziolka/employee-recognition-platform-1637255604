@@ -28,6 +28,9 @@ Lint/MissingSuper:
   Exclude:
     - 'app/policies/*'
 
+Style/ConditionalAssignment:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

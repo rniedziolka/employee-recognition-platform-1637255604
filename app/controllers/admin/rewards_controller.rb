@@ -37,10 +37,11 @@ module Admin
 
     def destroy
       if reward.destroy
-        redirect_to admin_rewards_url, notice: 'Reward was successfully destroyed.'
+        notice = 'Reward was successfully destroyed.'
       else
-        redirect_to admin_rewards_url, notice: reward.errors.full_messages[0]
+        notice = reward.errors.full_messages[0]
       end
+      redirect_to admin_rewards_url, notice: notice
     end
 
     private
