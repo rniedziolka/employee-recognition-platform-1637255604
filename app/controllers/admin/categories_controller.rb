@@ -39,7 +39,7 @@ module Admin
       if category.destroy
         notice = 'Category was successfully destroyed.'
       else
-        notice = category.errors.full_messages[0]
+        notice = 'The category cannot be deleted. It is assigned to the reward.'
       end
       redirect_to admin_categories_url, notice: notice
     end

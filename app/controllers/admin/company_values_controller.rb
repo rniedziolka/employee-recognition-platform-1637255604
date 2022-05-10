@@ -39,7 +39,7 @@ module Admin
       if company_value.destroy
         notice = 'Company Value was successfully destroyed.'
       else
-        notice = company_value.errors.full_messages[0]
+        notice = 'The Company Value cannot be deleted. It is assigned to the Kudo.'
       end
       redirect_to admin_company_values_url, notice: notice
     end

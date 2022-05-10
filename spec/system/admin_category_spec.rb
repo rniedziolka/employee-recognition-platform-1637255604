@@ -47,7 +47,7 @@ RSpec.describe 'AdminCategory crud', type: :system do
     click_link 'Categories'
     expect(page).to have_content category2.title
     click_link 'Destroy'
-    expect(page).to have_content 'Cannot delete record because dependent category rewards exist'
+    expect(page).to have_content 'The category cannot be deleted. It is assigned to the reward.'
 
     # remove category from reward
     click_link 'Rewards'
