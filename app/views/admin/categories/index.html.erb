@@ -1,0 +1,16 @@
+<h4>Categories <%= link_to 'New Category', new_admin_category_path, class:"btn btn-sm btn-outline-secondary" %></h4>
+  <br>
+    <div class="row hstack gap-3">
+      <% categories.each do |category| %>
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title"><%= category.title.first(20) %></h5>
+            <p class="card-text">Count Rewards: <%= category.rewards.count %></p>
+            <td><%= link_to 'Show', admin_category_path(category), class:"btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to 'Edit', edit_admin_category_path(category), class:"btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to 'Destroy', admin_category_path(category), class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </div>
+        </div>
+       <br>
+      <% end %>
+    </div>
