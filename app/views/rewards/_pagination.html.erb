@@ -1,18 +1,18 @@
 <div class="pagination">
   <% if page > 0 %>
-    <li class="page-item"><%= link_to "Previous", rewards_path(page: page - 1), class: "page-link" %></li>
+    <li class="page-item"><%= link_to "Previous", rewards_path(page: page - 1, category: params[:category] ), class: "page-link" %></li>
   <%else%>
     <li class="page-item disabled"><a class="page-link">Previous</a></li>
   <%end%>
   <% (page).times do |x|%>
-    <li class="page-item", data-test-id="page_first"><%= link_to x+1, rewards_path(page: x), class: "page-link" %></li>
+    <li class="page-item", data-test-id="page_first"><%= link_to x+1, rewards_path(page: x), category: params[:category] , class: "page-link" %></li>
   <% end %>
-    <li class="page-item active"><%= link_to page+1, rewards_path(page: page), class: "page-link" %></li>
+    <li class="page-item active"><%= link_to page+1, rewards_path(page: page, category: params[:category] ), class: "page-link" %></li>
   <% (number_of_pages-page-1).times do |y|%>
-    <li class="page-item", data-test-id="page_last"><%= link_to y+2+page, rewards_path(page: y+1+page), class: "page-link" %></li>
+    <li class="page-item", data-test-id="page_last"><%= link_to y+2+page, rewards_path(page: y+1+page, category: params[:category] ), class: "page-link" %></li>
   <% end %>
   <% if page < number_of_pages - 1 %>
-    <li class="page-item"><%= link_to "Next", rewards_path(page: page + 1), class: "page-link" %></li>
+    <li class="page-item"><%= link_to "Next", rewards_path(page: page + 1, category: params[:category] ), class: "page-link" %></li>
   <%else%>
     <li class="page-item disabled"><a class="page-link">Next</a></li>
   <%end%>
