@@ -13,4 +13,10 @@
   <%= reward.price %>
 </p>
 
+<p>
+  <% if reward.photo.persisted?%>
+    <%= image_tag reward.photo, width: '200px' %>
+  <%end%>
+</p>
+
 <%= link_to 'Back', rewards_path, class:"btn btn-sm btn-outline-secondary" %>

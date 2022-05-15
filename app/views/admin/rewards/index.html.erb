@@ -6,6 +6,11 @@
           <div class="card-body">
             <h5 class="card-title"><%= reward.title.first(20) %></h5>
             <h5 class="card-title"><%= reward.description.first(20) %></h5>
+            <h5 class="card-subtitle mb-2">
+              <% if reward.photo.persisted?%>
+                <%= image_tag reward.photo, width: '50px' %>
+              <%end%>
+            </h5>
             <h5 class="card-title"><%= reward.price %></h5>
             <td><%= link_to 'Show', admin_reward_path(reward), class:"btn btn-sm btn-outline-secondary" %></td>
             <td><%= link_to 'Edit', edit_admin_reward_path(reward), class:"btn btn-sm btn-outline-secondary" %></td>
