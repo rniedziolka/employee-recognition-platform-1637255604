@@ -21,6 +21,7 @@ gem 'webpacker', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'faker', '~> 1.6', '>= 1.6.3'
 gem 'rails-i18n', '~> 6.0'
+gem 'searchlight'
 
 group :development, :test do
   # Debugging tool

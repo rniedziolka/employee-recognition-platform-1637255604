@@ -36,8 +36,12 @@ module Admin
     end
 
     def destroy
-      reward.destroy
-      redirect_to admin_rewards_url, notice: 'Reward was successfully destroyed.'
+      if reward.destroy
+        notice = 'Reward was successfully destroyed.'
+      else
+        notice = 'The reward cannot be deleted. It is assigned to the category.'
+      end
+      redirect_to admin_rewards_url, notice: notice
     end
 
     private

@@ -1,10 +1,22 @@
 <h4>Rewards</h4>
   <br>
+    <div class="btn-group btns">
+      <%= link_to 'All', rewards_path, class:"btn btn-sm btn-outline-secondary" %>
+      <% categories.each do |category| %>
+        <%= link_to category.title, rewards_path(category: category.title), class:"btn btn-sm btn-outline-secondary" %>
+      <% end %>
+    </div>
+     <br><br><br>
     <div class="row hstack gap-3">
       <% rewards.each do |reward| %>
         <div class="card" style="width: 18rem">
           <div class="card-body">
             <h5 class="card-title"><%= reward.title.first(20) %></h5>
+            <td>
+                <% reward.categories.each do |category| %>
+                <%= category.title %>
+              <% end %>
+            </td>
             <h5 class="card-title"><%= reward.price %></h5>
             <td><%= link_to 'Show', reward_path(reward), class:"btn btn-sm btn-outline-secondary" %></td>
             <td><%= link_to 'Buy', orders_path(reward: reward), method: :post, class:"btn btn-sm btn-outline-secondary" %></td>

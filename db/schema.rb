@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2022_05_04_145202) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "employee_id", null: false
-    t.bigint "reward_id", null: false
+    t.bigint "reward_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "reward_snapshot"
