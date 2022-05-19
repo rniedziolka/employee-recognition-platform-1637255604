@@ -3,7 +3,7 @@
 module Admin
   class RewardsController < AdminController
     def index
-      render :index, locals: { rewards: Reward.all }
+      render :index, locals: { rewards: Reward.includes(photo_attachment: :blob).all }
     end
 
     def show
@@ -21,7 +21,7 @@ module Admin
     def create
       reward = Reward.new(reward_params)
       if reward.save
-        redirect_to admin_rewards_path(@reward), notice: 'Reward was successfully created.'
+        redirect_to admin_rewards_path(reward), notice: 'Reward was successfully created.'
       else
         render :new, locals: { reward: reward }
       end
@@ -51,7 +51,7 @@ module Admin
     end
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, category_ids: [])
+      params.require(:reward).permit(:title, :description, :price, :photo, category_ids: [])
     end
   end
 end

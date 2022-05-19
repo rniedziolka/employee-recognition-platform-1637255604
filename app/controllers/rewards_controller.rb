@@ -5,7 +5,7 @@ class RewardsController < ApplicationController
   def index
     page = params[:page].to_i || 0
     number_of_pages = (RewardSearch.new(params).results.count.to_f / REWARDS_PER_PAGE).ceil
-    rewards = RewardSearch.new(params).results.limit(REWARDS_PER_PAGE).offset(page * REWARDS_PER_PAGE).includes(:categories, :category_rewards)
+    rewards = RewardSearch.new(params).results.limit(REWARDS_PER_PAGE).offset(page * REWARDS_PER_PAGE).includes(:categories, :category_rewards, photo_attachment: :blob)
     categories = Category.all
     if params[:page].to_i <= number_of_pages - 1
       render :index, locals: { page: page, number_of_pages: number_of_pages, rewards: rewards, categories: categories }
