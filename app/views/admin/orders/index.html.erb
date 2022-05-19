@@ -1,4 +1,4 @@
-<h4>Orders</h4>
+<h4>Orders <%= link_to 'Export Orders List', admin_orders_path(format: :csv), class:"btn btn-sm btn-outline-secondary" %></h4>
   <br>
     <div class="row hstack gap-3">
       <% orders.each do |order| %>
