@@ -17,12 +17,12 @@ RSpec.describe 'Order CSV check', type: :system do
     click_link 'Export Orders List'
 
     csv_header = CSV.parse(page.body)[0]
-    expected_header = %w[order_title order_description employee_email transaction_price created_at status]
+    expected_header = %w[order_title order_description employee_email transaction_price created_at updated_at status]
 
     expect(expected_header).to match_array(csv_header)
 
     csv_first_row = CSV.parse(page.body)[1]
-    expected_first_row = [order.reward_snapshot.title, order.reward_snapshot.description, order.employee.email, order.reward_snapshot.price.to_s, order.created_at.to_s, order.status]
+    expected_first_row = [order.reward_snapshot.title, order.reward_snapshot.description, order.employee.email, order.reward_snapshot.price.to_s, order.created_at.to_s, order.updated_at.to_s, order.status]
 
     expect(expected_first_row).to match_array(csv_first_row)
   end
