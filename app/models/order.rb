@@ -12,4 +12,14 @@ class Order < ApplicationRecord
   def transaction_price
     reward_snapshot.price
   end
+
+  def order_title
+    reward_snapshot.title
+  end
+
+  def order_description
+    reward_snapshot.description
+  end
+
+  delegate :email, to: :employee, prefix: true
 end
