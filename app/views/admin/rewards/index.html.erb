@@ -1,4 +1,8 @@
-<h4>Rewards <%= link_to 'New Reward', new_admin_reward_path, class:"btn btn-sm btn-outline-secondary" %></h4>
+<h4>Rewards <%= link_to 'New Reward', new_admin_reward_path, class:"btn btn-sm btn-outline-secondary" %></h4> 
+  <%= form_tag import_admin_rewards_path, multipart: true do %>
+    <%= file_field_tag :file, class:"form-control w-25" %> 
+    <%= submit_tag "Import CSV file", class:"btn btn-sm btn-outline-secondary"%>  
+  <% end %>
   <br>
     <div class="row hstack gap-3">
       <% rewards.each do |reward| %>
