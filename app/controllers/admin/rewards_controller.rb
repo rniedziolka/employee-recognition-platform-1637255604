@@ -6,6 +6,17 @@ module Admin
       render :index, locals: { rewards: Reward.includes(photo_attachment: :blob).all }
     end
 
+    def import
+      if params[:file].nil?
+        redirect_to admin_rewards_path, notice: 'No file selected.'
+      elsif File.extname(params[:file]) != '.csv'
+        redirect_to admin_rewards_path, notice: 'File is not a ".csv"'
+      else
+        Import::RewardImport.import(params[:file])
+        redirect_to admin_rewards_path, notice: 'Rewards was successfully imported.'
+      end
+    end
+
     def show
       render :show, locals: { reward: reward }
     end
@@ -20,6 +31,7 @@ module Admin
 
     def create
       reward = Reward.new(reward_params)
+      reward.slug = reward.title.parameterize
       if reward.save
         redirect_to admin_rewards_path(reward), notice: 'Reward was successfully created.'
       else
@@ -28,6 +40,7 @@ module Admin
     end
 
     def update
+      reward.slug = reward_params[:title].parameterize
       if reward.update(reward_params)
         redirect_to admin_rewards_path(reward), notice: 'Reward was successfully updated.'
       else

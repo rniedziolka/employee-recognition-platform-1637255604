@@ -17,7 +17,11 @@ Rails.application.routes.draw do
     resources :categories
     resources :category_rewards
     resources :company_values
-    resources :rewards
+    resources :rewards do
+      collection do
+        post 'import'
+      end
+    end
     resources :orders, only: %i[index update]
     resources :employees do
       collection do
