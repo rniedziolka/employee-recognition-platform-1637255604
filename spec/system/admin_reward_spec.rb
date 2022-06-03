@@ -49,13 +49,13 @@ RSpec.describe 'AdminReward crud', type: :system do
     attach_file(File.absolute_path('./spec/files/docs/example.csv'))
     click_button 'Import CSV file'
     expect(page).to have_content '86'
-    expect(page).to have_content 'czesc'
+    expect(page).to have_content 'Sweet Small'
     attach_file(File.absolute_path('./spec/files/docs/example2.csv'))
     click_button 'Import CSV file'
     expect(page).to have_content '58'
-    expect(page).to have_content 'bye'
+    expect(page).to have_content 'Sour Big'
     expect(page).not_to have_content '86'
-    expect(page).not_to have_content 'czesc'
+    expect(page).not_to have_content 'Sweet Small'
 
     click_link 'Destroy', match: :first
     expect(page).to have_content 'Reward was successfully destroyed.'
