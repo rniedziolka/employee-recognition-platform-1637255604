@@ -6,7 +6,13 @@
           <div class="card-body">
             <h5 class="card-title"><%= order.reward_snapshot.title %></h5>
             <p class="card-text"><%= order.reward_snapshot.description %></p>
-            <h6 class="card-subtitle mb-2 text-muted">Placed by: <%= order.employee.email %></h6>
+            <h6 class="card-subtitle mb-2 text-muted">Placed by: 
+              <% if order.employee.first_name.nil? %>
+                <td class="text-center"><%= order.employee.email %></td>
+              <%else%>
+                <td class="text-center"><%= order.employee.first_name %> <%= order.employee.last_name %></td>
+              <%end%>
+            </h6>
             <h6 class="card-subtitle mb-2 text-muted">Price: <%= order.reward_snapshot.price %></h6>
             <h6 class="card-subtitle mb-2 text-muted">Purchase time: <%= tag.time l(order.created_at, format: :short), datetime: order.created_at %></h6>
             <h6 class="card-subtitle mb-2 text-muted">

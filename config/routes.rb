@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'pages/home'
   root 'kudos#index'
 
+  resources :employees, only: %i[edit update]
   resources :kudos
   resources :rewards, only: %i[index show]
   resources :orders, only: %i[index create]
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
       end
     end
     resources :orders, only: %i[index update]
-    resources :employees do
+    resources :employees, except: %i[new create] do
       collection do
         get 'edit_kudos_for_all'
         patch 'update_kudos_for_all'

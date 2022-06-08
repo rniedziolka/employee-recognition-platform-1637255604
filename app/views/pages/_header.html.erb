@@ -35,6 +35,10 @@
         <%= current_employee.kudos_score %>
       </span>
     
+    <% if current_employee.first_name.nil? %>
+      <%= link_to "Add your name", edit_employee_path(current_employee), class:"btn btn-sm btn-outline-success" %>
+    <%end%>
+
     <%= link_to 'Sign out', destroy_employee_session_path, method: :delete, class:"btn btn-sm btn-outline-success" %>
    
     <% else %>

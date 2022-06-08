@@ -4,6 +4,8 @@
       <% employees.each do |employee| %>
         <div class="card" style="width: 18rem">
           <div class="card-body">
+            <h5 class="card-title">First name: <%= employee.first_name unless employee.first_name.nil? %></h5>
+            <h5 class="card-title">Last name: <%= employee.last_name unless employee.last_name.nil? %></h5>
             <h5 class="card-title">Email: <%= employee.email %></h5>
             <h6 class="card-subtitle mb-2 text-muted">Available kudos: <%= employee.number_of_available_kudos %></h6>
             <h6 class="card-subtitle mb-2 text-muted">Kudo point: <%= employee.kudos_score %></h6>

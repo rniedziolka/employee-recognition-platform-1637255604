@@ -10,12 +10,20 @@
 
 <p>
   <strong>Employee:</strong>
-  <%= kudo.employee.email %>
+  <% if kudo.employee.first_name.nil? %>
+    <td class="text-center"><%= kudo.employee.email %></td>
+  <%else%>
+    <td class="text-center"><%= kudo.employee.first_name %> <%= kudo.employee.last_name %></td>
+  <%end%>
 </p>
 
 <p>
   <strong>Receiver:</strong>
-  <%= kudo.receiver.email %>
+  <% if kudo.receiver.first_name.nil? %>
+    <td class="text-center"><%= kudo.receiver.email %></td>
+  <%else%>
+    <td class="text-center"><%= kudo.receiver.first_name %> <%= kudo.receiver.last_name %></td>
+  <%end%>
 </p>
 
 <p>

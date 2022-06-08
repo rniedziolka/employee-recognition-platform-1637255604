@@ -13,6 +13,8 @@ RSpec.describe 'Employee account test', type: :system do
     visit root_path
     click_link 'Login page'
     click_link 'Sign up'
+    fill_in 'First name', with: valid_attributes[:first_name]
+    fill_in 'Last name', with: valid_attributes[:last_name]
     fill_in 'Email', with: valid_attributes[:email]
     fill_in 'Password', with: valid_attributes[:password]
     fill_in 'Password confirmation', with: valid_attributes[:password]

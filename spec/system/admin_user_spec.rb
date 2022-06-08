@@ -57,17 +57,26 @@ RSpec.describe 'Admin crud', type: :system do
     login_as(admin_user)
     visit admin_root_path
     click_link 'Employees'
+    expect(page).to have_content employee1.first_name
+    expect(page).to have_content employee1.last_name
     expect(page).to have_content employee1.number_of_available_kudos
+    expect(page).to have_content employee2.first_name
+    expect(page).to have_content employee2.last_name
     expect(page).to have_content employee2.number_of_available_kudos
     click_link 'Edit', match: :first
+    fill_in 'First name', with: 'Mark'
+    fill_in 'Last name', with: 'Ruth'
     fill_in 'Email', with: 'test121@test.com'
     fill_in 'Number of available kudos', with: '54'
     click_button 'Update Employee'
     expect(page).to have_content 'Employee was successfully updated.'
+    expect(page).to have_content 'Mark'
+    expect(page).to have_content 'Ruth'
     expect(page).to have_content 'test121@test.com'
     expect(page).to have_content 'Available kudos: 54'
     click_link 'Destroy', match: :first
     expect(page).to have_content 'Employee was successfully destroyed'
+    expect(page).not_to have_content employee2.last_name
     expect(page).not_to have_content employee2.number_of_available_kudos
   end
 

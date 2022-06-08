@@ -15,7 +15,9 @@ module Admin
     end
 
     def update
-      if employee.update(employee_params)
+      check_password_params = employee_params
+      check_password_params.delete(:password) if check_password_params[:password].blank?
+      if employee.update(check_password_params)
         redirect_to admin_employees_path(employee), notice: 'Employee was successfully updated.'
       else
         render :edit, locals: { employee: employee }
@@ -56,7 +58,7 @@ module Admin
     end
 
     def employee_params
-      params.require(:employee).permit(:email, :number_of_available_kudos)
+      params.require(:employee).permit(:first_name, :last_name, :email, :password, :number_of_available_kudos)
     end
 
     def add_kudos_param
