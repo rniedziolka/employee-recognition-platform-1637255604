@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3>Welcome <%= @order.employee.email %>!</h3>
+    <h3>Welcome <%= @order.employee.first_name %> <%= @order.employee.last_name %>!</h3>
     <p> Your order "<%= @order.reward.title %>" has been delivered.</p>
     <br>
     <p>Have a nice day!</p>
