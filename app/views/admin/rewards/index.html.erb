@@ -16,6 +16,7 @@
               <%end%>
             </h5>
             <h5 class="card-title"><%= reward.price %></h5>
+            <h5 class="card-title"><%= reward.delivery_method %></h5>
             <td><%= link_to 'Show', admin_reward_path(reward), class:"btn btn-sm btn-outline-secondary" %></td>
             <td><%= link_to 'Edit', edit_admin_reward_path(reward), class:"btn btn-sm btn-outline-secondary" %></td>
             <td><%= link_to 'Destroy', admin_reward_path(reward), class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>

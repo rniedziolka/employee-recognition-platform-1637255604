@@ -18,13 +18,14 @@
               <% end %>
             </td>
             <h5 class="card-title"><%= reward.price %></h5>
+            <h5 class="card-title"><%= reward.delivery_method %></h5>
             <h5 class="card-subtitle mb-2">
               <% if reward.photo.persisted?%>
                 <%= image_tag reward.photo, width: '50px' %>
               <%end%>
             </h5>
             <td><%= link_to 'Show', reward_path(reward), class:"btn btn-sm btn-outline-secondary" %></td>
-            <td><%= link_to 'Buy', orders_path(reward: reward), method: :post, class:"btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to 'Buy', new_order_path(reward: reward), method: :get, class:"btn btn-sm btn-outline-secondary" %></td>
           </div>
         </div>
        <br>

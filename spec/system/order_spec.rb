@@ -18,6 +18,8 @@ RSpec.describe 'Order', type: :system do
 
     click_link 'Rewards'
     click_link 'Buy'
+    expect(page).to have_content reward.title
+    click_button 'Buy'
     click_link 'Orders'
 
     expect(page).to have_content reward.title
