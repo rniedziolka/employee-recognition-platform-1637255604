@@ -17,7 +17,7 @@ class OrderForm
           a = Address.create!(employee: employee, street: street, city: city, postcode: postcode, last_used: Time.current)
         end
       end
-      Order.create!(reward: r, reward_snapshot: r, employee: employee)
+      Order.create!(reward: r, reward_snapshot: r, address_snapshot: a, employee: employee)
     end
     true
   rescue ActiveRecord::StatementInvalid => e
