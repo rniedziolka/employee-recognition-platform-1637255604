@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :employees, only: %i[edit update]
   resources :kudos
   resources :rewards, only: %i[index show]
-  resources :orders, only: %i[index create]
+  resources :orders, only: %i[index new create]
 
   namespace :admin do
     root to: 'pages#dashboard', as: :root

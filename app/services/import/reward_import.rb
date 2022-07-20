@@ -18,6 +18,7 @@ module Import
             reward.title = reward_hash['title']
             reward.description = reward_hash['description']
             reward.price = reward_hash['price'].to_f
+            reward.delivery_method = reward_hash['delivery_method']
             reward.save!
           else
             Reward.create! row.to_hash
