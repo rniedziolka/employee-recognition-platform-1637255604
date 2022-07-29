@@ -49,12 +49,12 @@ RSpec.describe 'AdminReward crud', type: :system do
 
     login_as(admin_user)
     click_link 'Rewards'
-    attach_file(File.absolute_path('./spec/files/docs/example.csv'))
+    attach_file(File.absolute_path('./spec/files/docs/rewards_external_data.csv'))
     click_button 'Import CSV file'
     expect(page).to have_content '86'
     expect(page).to have_content 'Sweet Small'
     expect(page).to have_content 'post'
-    attach_file(File.absolute_path('./spec/files/docs/example2.csv'))
+    attach_file(File.absolute_path('./spec/files/docs/rewards_external_data_updated.csv'))
     click_button 'Import CSV file'
     expect(page).to have_content '58'
     expect(page).to have_content 'Sour Big'

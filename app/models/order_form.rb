@@ -6,25 +6,38 @@ class OrderForm
   attr_accessor :reward, :delivery_method, :employee, :street, :postcode, :city, :address_id
 
   def save
-    r = Reward.find(reward)
+    return false unless enough_funds
+
     ActiveRecord::Base.transaction do
-      if r.delivery_method == 'post'
-        if address_id.present?
-          a = Address.find(address_id)
-          a.last_used = Time.current
-          a.save!
-        else
-          a = Address.create!(employee: employee, street: street, city: city, postcode: postcode, last_used: Time.current)
-        end
-      end
-      Order.create!(reward: r, reward_snapshot: r, address_snapshot: a, employee: employee)
+      create_order
     end
     true
-  rescue ActiveRecord::StatementInvalid => e
+  rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
     errors.add(:base, e.message)
     false
-  rescue ActiveRecord::RecordInvalid => e
-    errors.add(:base, e.message)
+  end
+
+  private
+
+  def enough_funds
+    return true if @employee.kudos_score >= Reward.find(@reward).price
+
+    errors.add(:base, 'You have insufficient funds in your account.')
     false
+  end
+
+  def create_order
+    create_address if Reward.find(@reward).delivery_method == 'post'
+    Order.create!(reward: Reward.find(@reward), reward_snapshot: Reward.find(@reward), address_snapshot: @address, employee: @employee)
+  end
+
+  def create_address
+    if @address_id.present?
+      @address = Address.find(@address_id)
+      @address.last_used = Time.current
+      @address.save!
+    else
+      @address = Address.create!(employee: employee, street: street, city: city, postcode: postcode, last_used: Time.current)
+    end
   end
 end

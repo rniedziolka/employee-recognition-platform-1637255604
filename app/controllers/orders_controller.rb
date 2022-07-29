@@ -16,15 +16,11 @@ class OrdersController < ApplicationController
 
   def create
     reward = Reward.find(order_form_params[:reward])
-    if current_employee.kudos_score < reward.price
-      redirect_to rewards_path, notice: 'You have insufficient funds in your account.'
+    order_form = OrderForm.new(order_form_params)
+    if order_form.save
+      redirect_to orders_path, notice: 'Reward bought'
     else
-      order_form = OrderForm.new(order_form_params)
-      if order_form.save
-        redirect_to orders_path, notice: 'Reward bought'
-      else
-        render :new, locals: { order_form: order_form, reward: reward, delivery_method: reward.delivery_method, employee: current_employee }
-      end
+      render :new, locals: { order_form: order_form, reward: reward, delivery_method: reward.delivery_method, employee: current_employee }
     end
   end
 
