@@ -30,11 +30,13 @@ RSpec.describe 'AdminReward crud', type: :system do
     fill_in 'Title', with: 'Example245'
     fill_in 'Description', with: 'Desc12390'
     fill_in 'Price', with: '260'
+    select('post', from: 'Delivery method')
     attach_file(File.absolute_path('./spec/files/images/default.jpg'))
     click_button 'Update Reward'
     expect(page).to have_content 'Example245'
     expect(page).to have_content '260.0'
     expect(page).to have_selector("img[src$='default.jpg']")
+    expect(page).to have_content 'post'
     expect(page).not_to have_content 'Example123'
 
     sign_in(employee)
@@ -42,18 +44,21 @@ RSpec.describe 'AdminReward crud', type: :system do
     expect(page).to have_content 'Example245'
     expect(page).to have_content '260.0'
     expect(page).to have_selector("img[src$='default.jpg']")
+    expect(page).to have_content 'post'
     expect(page).not_to have_content 'Example123'
 
     login_as(admin_user)
     click_link 'Rewards'
-    attach_file(File.absolute_path('./spec/files/docs/example.csv'))
+    attach_file(File.absolute_path('./spec/files/docs/rewards_external_data.csv'))
     click_button 'Import CSV file'
     expect(page).to have_content '86'
     expect(page).to have_content 'Sweet Small'
-    attach_file(File.absolute_path('./spec/files/docs/example2.csv'))
+    expect(page).to have_content 'post'
+    attach_file(File.absolute_path('./spec/files/docs/rewards_external_data_updated.csv'))
     click_button 'Import CSV file'
     expect(page).to have_content '58'
     expect(page).to have_content 'Sour Big'
+    expect(page).to have_content 'online'
     expect(page).not_to have_content '86'
     expect(page).not_to have_content 'Sweet Small'
 

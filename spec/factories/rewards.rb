@@ -5,5 +5,6 @@ FactoryBot.define do
     sequence(:title) { |n| "Title#{n}" }
     sequence(:description) { |n| "Description#{n}" }
     sequence(:price) { |n| n }
+    delivery_method { 'online' }
   end
 end

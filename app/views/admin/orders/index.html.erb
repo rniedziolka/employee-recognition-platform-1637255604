@@ -24,6 +24,13 @@
                 Status: Delivered
               <%end%>
             </h6>
+            <h6 class="card-subtitle mb-2 text-muted">Delivery method: 
+              <%if order.reward.delivery_method == 'online'%>
+                <td class="text-center"><%= order.employee.email %></td>
+              <%else%>
+                <td class="text-center"><%= order.employee.addresses.sort_by(&:last_used).reverse.collect { | addresses | addresses.full_address }.first %></td>
+              <%end%>
+            </h6>
           </div>
         </div>
        <br>

@@ -42,6 +42,11 @@
     <%= form.file_field :photo, class:"form-control" %>
   </div>
 
+  <div class="field mb-3">
+    <%= form.label :delivery_method %><br>
+    <%= form.select :delivery_method, Reward.delivery_methods.keys, {}, class:"form-control" %>
+  </div>
+
   <div class="actions">
     <%= form.submit class:"btn btn-sm btn-outline-secondary" %>
     <%= link_to 'Back', admin_rewards_path, class:"btn btn-sm btn-outline-secondary" %>

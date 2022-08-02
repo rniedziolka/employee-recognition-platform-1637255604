@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   scope :filter_by_status, ->(status) { where status: status }
 
   serialize :reward_snapshot
+  serialize :address_snapshot
 
   belongs_to :employee
   belongs_to :reward
