@@ -2,7 +2,7 @@
 
 class RewardSearch < Searchlight::Search
   def base_query
-    Reward.all.in_stock.order(:title).with_attached_photo
+    Reward.all
   end
 
   def search_category
