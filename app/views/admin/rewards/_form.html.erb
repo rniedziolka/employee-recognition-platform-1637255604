@@ -23,7 +23,7 @@
   
   <div class="field mb-3">
     <%= form.label :price %>
-    <%= form.text_field :price, class:"form-control" %>
+    <%= form.number_field :price, class:"form-control" %>
   </div>
 
   <div class="field mb-3">
@@ -41,6 +41,13 @@
     <%= form.label :photo %><br>
     <%= form.file_field :photo, class:"form-control" %>
   </div>
+
+  <% if reward.delivery_method != 'online' %>
+    <div class="field">
+      <%= form.label :available_items %>
+      <%= form.number_field :available_items %>
+    </div>
+  <% end %>
 
   <div class="field mb-3">
     <%= form.label :delivery_method %><br>

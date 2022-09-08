@@ -22,6 +22,6 @@ kudo2 = Kudo.create!(title: Faker::Food.dish, content: Faker::Food.description, 
 kudo3 = Kudo.create!(title: Faker::Food.dish, content: Faker::Food.description, employee_id: employee3.id, receiver_id: employee4.id, company_value: company_value1)
 kudo4 = Kudo.create!(title: Faker::Food.dish, content: Faker::Food.description, employee_id: employee4.id, receiver_id: employee3.id, company_value: company_value2)
 
-1.upto(50) do |i|
+1.upto(15) do |i|
     Reward.create!(title: Faker::Food.dish, description: Faker::Food.description, price: "#{i}")
 end

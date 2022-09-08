@@ -24,6 +24,11 @@ Rails.application.routes.draw do
       end
     end
     resources :orders, only: %i[index update]
+    resources :online_codes, only: %i[index new create destroy edit update] do
+      collection do
+        post 'import'
+      end
+    end
     resources :employees, except: %i[new create] do
       collection do
         get 'edit_kudos_for_all'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_20_112416) do
+ActiveRecord::Schema.define(version: 2022_08_05_113151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,18 @@ ActiveRecord::Schema.define(version: 2022_07_20_112416) do
     t.index ["receiver_id"], name: "index_kudos_on_receiver_id"
   end
 
+  create_table "online_codes", force: :cascade do |t|
+    t.string "code"
+    t.integer "status", default: 0
+    t.bigint "reward_id", null: false
+    t.bigint "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_online_codes_on_code", unique: true
+    t.index ["order_id"], name: "index_online_codes_on_order_id"
+    t.index ["reward_id"], name: "index_online_codes_on_reward_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "employee_id", null: false
     t.bigint "reward_id"
@@ -135,6 +147,8 @@ ActiveRecord::Schema.define(version: 2022_07_20_112416) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.integer "delivery_method", default: 0
+    t.integer "available_items", default: 0
+    t.integer "online_codes_count", default: 0, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -143,6 +157,8 @@ ActiveRecord::Schema.define(version: 2022_07_20_112416) do
   add_foreign_key "category_rewards", "categories"
   add_foreign_key "category_rewards", "rewards"
   add_foreign_key "kudos", "company_values"
+  add_foreign_key "online_codes", "orders"
+  add_foreign_key "online_codes", "rewards"
   add_foreign_key "orders", "employees"
   add_foreign_key "orders", "rewards"
 end
