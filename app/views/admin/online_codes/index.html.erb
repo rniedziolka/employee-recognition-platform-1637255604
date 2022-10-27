@@ -1,0 +1,21 @@
+<h4>Online Codes <%= link_to 'New Online Code', new_admin_online_code_path, class:"btn btn-sm btn-outline-secondary" %></h4>
+  <%= form_tag import_admin_online_codes_path, multipart: true do %>
+    <%= file_field_tag :file, class:"form-control w-25" %> 
+    <%= submit_tag "Import CSV file", class:"btn btn-sm btn-outline-secondary"%>  
+  <% end %>
+  <br>
+    <div class="row hstack gap-3">
+      <% online_codes.each do |online_code| %>
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Code: <%= online_code.code %></h5>
+            <h5 class="card-title">Reward: <%= online_code.reward.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Employee: <%= online_code.order.employee.full_name if online_code.order.present? %></h6>
+            <h6 class="card-subtitle mb-2 text-muted">Sent: <%= online_code.sent? ? 'Yes' : 'No'%></h6>
+            <td><%= link_to 'Edit', edit_admin_online_code_path(online_code), class:"btn btn-sm btn-outline-secondary" %></td>
+            <td><%= link_to 'Destroy', admin_online_code_path(online_code), class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </div>
+        </div>
+       <br>
+      <% end %>
+    </div>

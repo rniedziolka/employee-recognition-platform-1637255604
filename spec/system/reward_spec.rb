@@ -9,6 +9,7 @@ RSpec.describe 'Reward', type: :system do
 
   let(:employee) { create(:employee) }
   let!(:reward) { create(:reward, price: 1, delivery_method: 'online') }
+  let!(:online_code) { create(:online_code, reward: reward) }
 
   it 'rewards test' do
     sign_in(employee)
@@ -33,8 +34,8 @@ RSpec.describe 'Reward', type: :system do
 
     click_link 'Buy'
     expect(page).to have_content reward.title
-    click_button 'Buy'
-    expect(page).to have_content 'You have insufficient funds in your account.'
+    click_link 'Buy'
+    expect(page).to have_content 'You have insufficient funds'
 
     create(:kudo, receiver: employee)
 
@@ -48,11 +49,21 @@ RSpec.describe 'Reward', type: :system do
   end
 
   it 'pagination check' do
-    create_list(:reward, 18)
+    create_list(:reward, 25, delivery_method: 'post', available_items: 1)
     visit rewards_path
-
-    expect(page).to have_link('Buy', count: 10)
+    expect(page).to have_link '3'
+    expect(page).not_to have_link '4'
+    click_link '3'
+    expect(page).to have_content '3'
+    expect(page).to have_content Reward.order(:title).last.title
+    expect(page).not_to have_content Reward.order(:title).first.title
     click_link '2'
-    expect(page).to have_link('Buy', count: 9)
+    expect(page).to have_content '2'
+    expect(page).not_to have_content Reward.order(:title).last.title
+    expect(page).not_to have_content Reward.order(:title).first.title
+    click_link '1'
+    expect(page).to have_content '1'
+    expect(page).not_to have_content Reward.order(:title).last.title
+    expect(page).to have_content Reward.order(:title).first.title
   end
 end

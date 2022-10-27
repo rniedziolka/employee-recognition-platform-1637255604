@@ -3,7 +3,7 @@
 module Admin
   class RewardsController < AdminController
     def index
-      render :index, locals: { rewards: Reward.includes(photo_attachment: :blob).all }
+      render :index, locals: { rewards: Reward.includes(photo_attachment: :blob) }
     end
 
     def import
@@ -64,7 +64,7 @@ module Admin
     end
 
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, :photo, :delivery_method, category_ids: [])
+      params.require(:reward).permit(:title, :description, :price, :photo, :delivery_method, :available_items, category_ids: [])
     end
   end
 end

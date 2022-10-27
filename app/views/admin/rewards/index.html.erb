@@ -8,15 +8,16 @@
       <% rewards.each do |reward| %>
         <div class="card" style="width: 18rem">
           <div class="card-body">
-            <h5 class="card-title"><%= reward.title.first(20) %></h5>
-            <h5 class="card-title"><%= reward.description.first(20) %></h5>
+            <h5 class="card-title">Title: <%= reward.title.first(20) %></h5>
+            <h6 class="card-title">Description: <%= reward.description.first(20) %></h6>
             <h5 class="card-subtitle mb-2">
               <% if reward.photo.persisted?%>
                 <%= image_tag reward.photo, width: '50px' %>
               <%end%>
             </h5>
-            <h5 class="card-title"><%= reward.price %></h5>
-            <h5 class="card-title"><%= reward.delivery_method %></h5>
+            <h6 class="card-title">Price: <%= reward.price %></h6>
+            <h6 class="card-title">Delivery Method: <%= reward.delivery_method %></h6>
+            <h6 class="card-title">Available: <%= reward.number_of_available_items %></h6>
             <td><%= link_to 'Show', admin_reward_path(reward), class:"btn btn-sm btn-outline-secondary" %></td>
             <td><%= link_to 'Edit', edit_admin_reward_path(reward), class:"btn btn-sm btn-outline-secondary" %></td>
             <td><%= link_to 'Destroy', admin_reward_path(reward), class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: 'Are you sure?' } %></td>

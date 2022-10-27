@@ -25,11 +25,11 @@
               <%end%>
             </h6>
             <h6 class="card-subtitle mb-2 text-muted">Delivery method: 
-              <%if order.reward.delivery_method == 'online'%>
-                <td class="text-center"><%= order.employee.email %></td>
-              <%else%>
-                <td class="text-center"><%= order.employee.addresses.sort_by(&:last_used).reverse.collect { | addresses | addresses.full_address }.first %></td>
-              <%end%>
+              <% if order.reward_snapshot.delivery_method == 'post'%>
+                <%= "#{order.reward_snapshot.delivery_method}, #{order.address_snapshot.street} #{order.address_snapshot.postcode} #{order.address_snapshot.city}" %>
+              <% else %>
+                <%= order.reward_snapshot.delivery_method %>
+              <% end %>
             </h6>
           </div>
         </div>

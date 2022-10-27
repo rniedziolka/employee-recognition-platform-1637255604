@@ -9,8 +9,9 @@ RSpec.describe 'AdminOrder', type: :system do
 
   let!(:admin_user) { create(:admin_user) }
   let!(:employee) { create(:employee) }
-  let!(:reward) { create(:reward, price: 1) }
-  let(:reward2) { create(:reward, price: 2) }
+  let!(:reward) { create(:reward, price: 1, delivery_method: 'online') }
+  let(:reward2) { create(:reward, price: 2, delivery_method: 'online') }
+  let!(:online_code) { create(:online_code, reward: reward) }
   let!(:kudo) { create(:kudo, receiver: employee) }
 
   it 'test admin orders actions' do
