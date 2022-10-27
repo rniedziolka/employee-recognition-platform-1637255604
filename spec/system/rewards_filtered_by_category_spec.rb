@@ -7,9 +7,11 @@ RSpec.describe 'Rewards filtering by category', type: :system do
     driven_by(:rack_test)
   end
 
+  let(:reward1) { create(:reward, delivery_method: 'post', available_items: 1) }
+  let(:reward2) { create(:reward, delivery_method: 'post', available_items: 1) }
   let!(:employee) { create(:employee) }
-  let!(:category_reward1) { create(:category_reward) }
-  let!(:category_reward2) { create(:category_reward) }
+  let!(:category_reward1) { create(:category_reward, reward: reward1) }
+  let!(:category_reward2) { create(:category_reward, reward: reward2) }
 
   it 'reward filtered category test' do
     sign_in(employee)

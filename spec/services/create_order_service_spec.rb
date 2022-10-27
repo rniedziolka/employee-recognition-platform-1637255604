@@ -9,11 +9,11 @@ RSpec.describe CreateOrderService do
       create(:kudo, receiver: employee) # add funds
       reward_post = create(:reward, price: 1, delivery_method: 'post', available_items: 1)
       params = { address: attributes_for(:address), reward_id: reward_post.id }
-      before_orders_conut = Order.all.count
+      before_orders_count = Order.all.count
       create_order_service = described_class.new(params: params, employee: employee)
 
       expect(create_order_service.call).to be true
-      expect(Order.all.count).to eq before_orders_conut + 1
+      expect(Order.all.count).to eq before_orders_count + 1
     end
 
     it 'adds new order to db' do
@@ -115,8 +115,7 @@ RSpec.describe CreateOrderService do
       create_order_service = described_class.new(params: params, employee: employee)
 
       expect { create_order_service.call }.to change { ActionMailer::Base.deliveries.count }.by(1)
-      expect(ActionMailer::Base.deliveries.last).to eq OrderDeliveryMailer.with(order: create_order_service.order,
-                                                                                code: online_code.code).online_code_delivery_email
+      expect(ActionMailer::Base.deliveries.last).to eq OrderDeliveryMailer.with(order: create_order_service.order, code: online_code.code).online_code_delivery_email
     end
 
     it 'returns false when there is no available online_codes to buy' do

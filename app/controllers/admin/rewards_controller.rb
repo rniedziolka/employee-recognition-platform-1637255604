@@ -3,7 +3,7 @@
 module Admin
   class RewardsController < AdminController
     def index
-      render :index, locals: { rewards: Reward.includes(photo_attachment: :blob).all }
+      render :index, locals: { rewards: Reward.includes(photo_attachment: :blob) }
     end
 
     def import

@@ -2,7 +2,7 @@
 
 class KudosController < ApplicationController
   def index
-    render :index, locals: { kudos: Kudo.includes(:company_value, :employee, :receiver).all }
+    render :index, locals: { kudos: Kudo.includes(:company_value, :employee, :receiver) }
   end
 
   def show

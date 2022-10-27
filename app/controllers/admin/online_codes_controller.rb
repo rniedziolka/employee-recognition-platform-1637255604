@@ -3,7 +3,7 @@
 module Admin
   class OnlineCodesController < AdminController
     def index
-      online_codes = OnlineCode.all.includes(:reward, :order)
+      online_codes = OnlineCode.includes(:reward, :order)
       render :index, locals: { online_codes: online_codes }
     end
 

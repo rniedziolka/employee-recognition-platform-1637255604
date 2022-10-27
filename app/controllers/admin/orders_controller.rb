@@ -5,7 +5,7 @@ module Admin
     def index
       respond_to do |format|
         format.html { render :index, locals: { orders: Order.includes(:employee).all.order(:status) } }
-        format.csv { send_data Export::OrderExport.new(Order.includes(:employee).all.order(:status)).to_csv, filename: "Orders_#{Time.zone.today}.csv" }
+        format.csv { send_data Export::OrderExport.new(Order.includes(:employee).order(:status)).to_csv, filename: "Orders_#{Time.zone.today}.csv" }
       end
     end
 
