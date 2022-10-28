@@ -23,7 +23,7 @@ class CreateOrderService
     ActiveRecord::Base.transaction do
       update_address if @reward.post?
       create_order
-      decrease_item_stock if @reward.post?
+      decrease_item_stock if @reward.post? || @reward.pickup?
       assign_online_code if @reward.online?
     end
     deliver_email
@@ -70,7 +70,11 @@ class CreateOrderService
   def deliver_email
     return if @reward.post?
 
-    OrderDeliveryMailer.with(order: @order, code: @online_code.code).online_code_delivery_email.deliver
-    @order.delivered! if @order.reward_snapshot.delivery_method == 'online'
+    if @reward.online?
+      OrderDeliveryMailer.with(order: @order, code: @online_code.code).online_code_delivery_email.deliver
+    else
+      OrderDeliveryMailer.with(order: @order).pickup_delivery_email.deliver
+    end
+    @order.delivered!
   end
 end
