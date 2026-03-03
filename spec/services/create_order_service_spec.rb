@@ -83,6 +83,41 @@ RSpec.describe CreateOrderService do
     end
   end
 
+  context 'when buying pickup reward' do
+    it 'returns true when all params are correct and adds order to db' do
+      employee = create(:employee)
+      create(:kudo, receiver: employee) # add funds
+      reward_post = create(:reward, price: 1, delivery_method: 'pickup', available_items: 1)
+      params = { reward_id: reward_post.id }
+      before_orders_conut = Order.all.count
+      create_order_service = described_class.new(params: params, employee: employee)
+
+      expect(create_order_service.call).to be true
+      expect(Order.all.count).to eq before_orders_conut + 1
+    end
+
+    it 'adds new order to db' do
+      employee = create(:employee)
+      create(:kudo, receiver: employee) # add funds
+      reward_post = create(:reward, price: 1, delivery_method: 'pickup', available_items: 1)
+      params = { reward_id: reward_post.id }
+      create_order_service = described_class.new(params: params, employee: employee)
+
+      expect { create_order_service.call }.to change { Order.all.count }.by(1)
+    end
+
+    it 'delivers pickup instructions via email after purchase' do
+      employee = create(:employee)
+      create(:kudo, receiver: employee) # add funds
+      reward_post = create(:reward, price: 1, delivery_method: 'pickup', available_items: 1)
+      params = { address: attributes_for(:address), reward_id: reward_post.id }
+      create_order_service = described_class.new(params: params, employee: employee)
+
+      expect { create_order_service.call }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      expect(ActionMailer::Base.deliveries.last).to eq OrderDeliveryMailer.with(order: create_order_service.order).pickup_delivery_email
+    end
+  end
+
   context 'when buying online reward' do
     it 'returns true when all params are correct' do
       employee = create(:employee)

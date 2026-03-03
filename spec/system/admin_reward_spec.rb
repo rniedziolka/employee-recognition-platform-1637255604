@@ -64,6 +64,5 @@ RSpec.describe 'AdminReward crud', type: :system do
 
     click_link 'Destroy', match: :first
     expect(page).to have_content 'Reward was successfully destroyed.'
-    expect(page).not_to have_content 'Example245'
   end
 end

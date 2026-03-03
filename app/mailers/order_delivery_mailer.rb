@@ -13,4 +13,10 @@ class OrderDeliveryMailer < ApplicationMailer
     mail(to: @order.employee.email,
          subject: "Your order #{@order.reward_snapshot.title} has been delivered.")
   end
+
+  def pickup_delivery_email
+    @order = params[:order]
+    mail(to: @order.employee.email,
+         subject: "You can pickup your order: #{@order.reward_snapshot.title}.")
+  end
 end
